@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Candidato_controller</display-name>
+    <servlet-name>Candidato_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Candidato_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Candidato_controller</servlet-name>
+    <url-pattern>/Candidato_controller</url-pattern>
+  </servlet-mapping>
 </web-app>
