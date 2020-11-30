@@ -19,4 +19,24 @@
     <servlet-name>Candidato_controller</servlet-name>
     <url-pattern>/Candidato_controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Annuncio_controller</display-name>
+    <servlet-name>Annuncio_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Annuncio_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Annuncio_controller</servlet-name>
+    <url-pattern>/Annuncio_controller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Territorio_controller</display-name>
+    <servlet-name>Territorio_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Territorio_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Territorio_controller</servlet-name>
+    <url-pattern>/Territorio_controller</url-pattern>
+  </servlet-mapping>
 </web-app>
