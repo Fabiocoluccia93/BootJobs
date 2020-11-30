@@ -21,15 +21,15 @@ import javax.persistence.TemporalType;
 @Table( name = "candidato" )
 public class Candidato
 {
-	private Integer id_candidato;
+	private Long id_candidato;
 	private String mail;
 	private String password;
 	private String nome;
 	private String cognome;
 	private Date data_nascita;
 	private String titolo_studio;
-	private Integer numero_telefono;
-	private String comune;
+	private Long numero_telefono;
+	private String comune_candidato;
 	private ArrayList<Candidatura> candidatura;
 	
 	
@@ -39,7 +39,7 @@ public class Candidato
 		// TODO Auto-generated constructor stub
 	}
 	public Candidato(String mail, String password, String nome, String cognome, Date data_nascita,
-			String titolo_studio, int numero_telefono, String comune) 
+			String titolo_studio, Long numero_telefono, String comune_candidato) 
 	{
 		super();
 		this.mail = mail;
@@ -49,16 +49,16 @@ public class Candidato
 		this.data_nascita = data_nascita;
 		this.titolo_studio = titolo_studio;
 		this.numero_telefono = numero_telefono;
-		this.comune = comune;
+		this.comune_candidato = comune_candidato;
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_candidato")
-	public Integer getId() {
+	public Long getId() {
 		return id_candidato;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id_candidato = id_candidato;
 	}
 	public String getMail() {
@@ -100,17 +100,17 @@ public class Candidato
 	public void setTitolo_studio(String titolo_studio) {
 		this.titolo_studio = titolo_studio;
 	}
-	public Integer getNumero_telefono() {
+	public Long getNumero_telefono() {
 		return numero_telefono;
 	}
-	public void setNumero_telefono(Integer numero_telefono) {
+	public void setNumero_telefono(Long numero_telefono) {
 		this.numero_telefono = numero_telefono;
 	}
-	public String getComune() {
-		return comune;
+	public String getcomune_candidato() {
+		return comune_candidato;
 	}
-	public void setComune(String comune) {
-		this.comune = comune;
+	public void setcomune_candidato(String comune_candidato) {
+		this.comune_candidato = comune_candidato;
 	}
 	
 //	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
