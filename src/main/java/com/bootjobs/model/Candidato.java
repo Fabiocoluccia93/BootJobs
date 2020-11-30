@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table( name = "candidato" )
 public class Candidato
 {
-	private Integer id;
+	private Integer id_candidato;
 	private String mail;
 	private String password;
 	private String nome;
@@ -54,11 +54,12 @@ public class Candidato
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_candidato")
 	public Integer getId() {
-		return id;
+		return id_candidato;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.id_candidato = id_candidato;
 	}
 	public String getMail() {
 		return mail;
