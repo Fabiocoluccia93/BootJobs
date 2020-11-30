@@ -3,6 +3,7 @@ package com.bootjobs.model;
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @Table( name = "candidatura" )
 public class Candidatura
 {
- private Integer id;
+ private Integer id_candidatura;
  private Integer id_candidato;
  private Integer annuncio;
  private Integer id_societa;
@@ -38,11 +39,12 @@ public Candidatura( Integer id_candidato, Integer annuncio, Integer id_societa)
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name="id_candidatura")
 public Integer getId() {
-	return id;
+	return id_candidatura;
 }
 public void setId(int Integer) {
-	this.id = id;
+	this.id_candidatura = id_candidatura;
 }
 public int getId_candidato() {
 	return id_candidato;
