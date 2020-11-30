@@ -3,7 +3,6 @@ package com.bootjobs.model;
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,10 +17,10 @@ import javax.persistence.Table;
 @Table( name = "candidatura" )
 public class Candidatura
 {
- private Integer id_candidatura;
- private Integer id_candidato;
- private Integer annuncio;
- private Integer id_societa;
+ private Long id;
+ private Long id_candidato_fk;
+ private Long id_annuncio_fk;
+ private Long id_societa_fk;
  private ArrayList<Candidato> candidato;
  
  public Candidatura()
@@ -29,40 +28,39 @@ public class Candidatura
 	super();
 	// TODO Auto-generated constructor stub
  }
-public Candidatura( Integer id_candidato, Integer annuncio, Integer id_societa) 
+public Candidatura( Long id_candidato_fk, Long annuncio, Long id_societa_fk) 
 {
 	super();
-	this.id_candidato = id_candidato;
-	this.annuncio = annuncio;
-	this.id_societa = id_societa;
+	this.id_candidato_fk = id_candidato_fk;
+	this.id_annuncio_fk = annuncio;
+	this.id_societa_fk = id_societa_fk;
 }
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name="id_candidatura")
-public Integer getId() {
-	return id_candidatura;
+public Long getId() {
+	return id;
 }
-public void setId(int Integer) {
-	this.id_candidatura = id_candidatura;
+public void setId(Long Long) {
+	this.id = id;
 }
-public int getId_candidato() {
-	return id_candidato;
+public Long getid_candidato_fk() {
+	return id_candidato_fk;
 }
-public void setId_candidato(Integer id_candidato) {
-	this.id_candidato = id_candidato;
+public void setid_candidato_fk(Long id_candidato_fk) {
+	this.id_candidato_fk = id_candidato_fk;
 }
-public int getAnnuncio() {
-	return annuncio;
+public Long getAnnuncio() {
+	return id_annuncio_fk;
 }
-public void setAnnuncio(Integer annuncio) {
-	this.annuncio = annuncio;
+public void setAnnuncio(Long annuncio) {
+	this.id_annuncio_fk = id_annuncio_fk;
 }
-public int getId_societa() {
-	return id_societa;
+public Long getid_societa_fk() {
+	return id_societa_fk;
 }
-public void setId_societa(Integer id_societa) {
-	this.id_societa = id_societa;
+public void setid_societa_fk(Long id_societa_fk) {
+	this.id_societa_fk = id_societa_fk;
 }
 
 @ManyToMany(fetch = FetchType.LAZY, mappedBy = "candidatura")
