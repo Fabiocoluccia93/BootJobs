@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "")
 public class Annuncio {
 	
-	private int id, id_societa;
+	private Long id, id_societa_annuncio;
 	private String nome_annuncio, titolo_di_studio, tipo_contratto, descrizione, categoria, sottocategoria;
 	private Double stipendio;
 	Date data_pubblicazione;
@@ -27,11 +27,11 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio(int id, int id_societa, String nome_annuncio, String titolo_di_studio, String tipo_contratto,
+	public Annuncio(Long id, Long id_societa_annuncio, String nome_annuncio, String titolo_di_studio, String tipo_contratto,
 			String descrizione, String categoria, String sottocategoria, Double stipendio, Date data_pubblicazione) {
 		super();
 		this.id = id;
-		this.id_societa = id_societa;
+		this.id_societa_annuncio = id_societa_annuncio;
 		this.nome_annuncio = nome_annuncio;
 		this.titolo_di_studio = titolo_di_studio;
 		this.tipo_contratto = tipo_contratto;
@@ -46,21 +46,21 @@ public class Annuncio {
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	@Column(name = "")
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	@Column(name = "")
-	public int getId_societa() {
-		return id_societa;
+	public Long getid_societa_annuncio() {
+		return id_societa_annuncio;
 	}
 
-	public void setId_societa(int id_societa) {
-		this.id_societa = id_societa;
+	public void setid_societa_annuncio(Long id_societa_annuncio) {
+		this.id_societa_annuncio = id_societa_annuncio;
 	}
 
 	@Column(name = "")
