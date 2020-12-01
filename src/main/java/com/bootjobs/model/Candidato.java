@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -113,12 +114,11 @@ public class Candidato
 		this.comune_candidato = comune_candidato;
 	}
 	
-//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinTable(name = "candidatura", catalog = "bootjobs", joinColumns = { 
-//	        @JoinColumn(name = "id", nullable = false, updatable = false) }, 
-//	        inverseJoinColumns = { @JoinColumn(name = "id", 
-//	                nullable = false, updatable = false) })
-	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "candidatura", catalog = "bootjobs", joinColumns = { 
+		@JoinColumn(name = "id_candidatura", nullable = false, updatable = false) }, 
+	    inverseJoinColumns = { @JoinColumn(name = "id_candidato", 
+	      nullable = false, updatable = false) })
 	public ArrayList<Candidatura> getCandidatura() {
 		return candidatura;
 	}
