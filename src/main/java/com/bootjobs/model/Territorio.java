@@ -8,25 +8,42 @@ import javax.persistence.Table;
 @Table(name = "")
 public class Territorio {
 
-	private String nome;
+	private String regione, provinica, comune;
 
 	public Territorio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Territorio(String nome) {
+	public Territorio(String regione, String provinica, String comune) {
 		super();
-		this.nome = nome;
+		this.regione = regione;
+		this.provinica = provinica;
+		this.comune = comune;
 	}
 
-	@Column(name = "")
-	public String getNome() {
-		return nome;
+	public String getRegione() {
+		return regione;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setRegione(String regione) {
+		this.regione = regione;
+	}
+
+	public String getProvinica() {
+		return provinica;
+	}
+
+	public void setProvinica(String provinica) {
+		this.provinica = provinica;
+	}
+
+	public String getComune() {
+		return comune;
+	}
+
+	public void setComune(String comune) {
+		this.comune = comune;
 	}
 
 }

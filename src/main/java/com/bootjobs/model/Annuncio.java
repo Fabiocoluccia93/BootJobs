@@ -18,7 +18,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class Annuncio {
 	
 	private Long id, id_societa_annuncio;
-	private String nome_annuncio, titolo_di_studio, tipo_contratto, descrizione, categoria, sottocategoria;
+	private String nome_annuncio, titolo_di_studio, tipo_contratto, descrizione;
+	private Territorio territorio;
+	private Categoria categoria;
 	private Double stipendio;
 	Date data_pubblicazione;
 
@@ -27,8 +29,9 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio(Long id, Long id_societa_annuncio, String nome_annuncio, String titolo_di_studio, String tipo_contratto,
-			String descrizione, String categoria, String sottocategoria, Double stipendio, Date data_pubblicazione) {
+	public Annuncio(Long id, Long id_societa_annuncio, String nome_annuncio, String titolo_di_studio,
+			String tipo_contratto, String descrizione, Territorio territorio, Categoria categoria, Double stipendio,
+			Date data_pubblicazione) {
 		super();
 		this.id = id;
 		this.id_societa_annuncio = id_societa_annuncio;
@@ -36,16 +39,12 @@ public class Annuncio {
 		this.titolo_di_studio = titolo_di_studio;
 		this.tipo_contratto = tipo_contratto;
 		this.descrizione = descrizione;
+		this.territorio = territorio;
 		this.categoria = categoria;
-		this.sottocategoria = sottocategoria;
 		this.stipendio = stipendio;
 		this.data_pubblicazione = data_pubblicazione;
 	}
 
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "")
 	public Long getId() {
 		return id;
 	}
@@ -54,16 +53,14 @@ public class Annuncio {
 		this.id = id;
 	}
 
-	@Column(name = "")
-	public Long getid_societa_annuncio() {
+	public Long getId_societa_annuncio() {
 		return id_societa_annuncio;
 	}
 
-	public void setid_societa_annuncio(Long id_societa_annuncio) {
+	public void setId_societa_annuncio(Long id_societa_annuncio) {
 		this.id_societa_annuncio = id_societa_annuncio;
 	}
 
-	@Column(name = "")
 	public String getNome_annuncio() {
 		return nome_annuncio;
 	}
@@ -72,7 +69,6 @@ public class Annuncio {
 		this.nome_annuncio = nome_annuncio;
 	}
 
-	@Column(name = "")
 	public String getTitolo_di_studio() {
 		return titolo_di_studio;
 	}
@@ -81,7 +77,6 @@ public class Annuncio {
 		this.titolo_di_studio = titolo_di_studio;
 	}
 
-	@Column(name = "")
 	public String getTipo_contratto() {
 		return tipo_contratto;
 	}
@@ -90,7 +85,6 @@ public class Annuncio {
 		this.tipo_contratto = tipo_contratto;
 	}
 
-	@Column(name = "")
 	public String getDescrizione() {
 		return descrizione;
 	}
@@ -99,25 +93,22 @@ public class Annuncio {
 		this.descrizione = descrizione;
 	}
 
-	@Column(name = "")
-	public String getCategoria() {
+	public Territorio getTerritorio() {
+		return territorio;
+	}
+
+	public void setTerritorio(Territorio territorio) {
+		this.territorio = territorio;
+	}
+
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-	@Column(name = "")
-	public String getSottocategoria() {
-		return sottocategoria;
-	}
-
-	public void setSottocategoria(String sottocategoria) {
-		this.sottocategoria = sottocategoria;
-	}
-
-	@Column(name = "")
 	public Double getStipendio() {
 		return stipendio;
 	}
@@ -126,8 +117,6 @@ public class Annuncio {
 		this.stipendio = stipendio;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "")
 	public Date getData_pubblicazione() {
 		return data_pubblicazione;
 	}
@@ -135,5 +124,7 @@ public class Annuncio {
 	public void setData_pubblicazione(Date data_pubblicazione) {
 		this.data_pubblicazione = data_pubblicazione;
 	}
+
+
 
 }
