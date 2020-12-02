@@ -1,22 +1,21 @@
 package com.bootjobs.model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Annuncio_Service implements Annuncio_utility {
+import javax.persistence.EntityManager;
 
-	ResultSet r = null;
-	Statement st = null;
-	Connection con = null;
+
+
+public class Annuncio_Service implements Annuncio_utility {
 	
 	public Annuncio_Service() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public boolean inserisciAnnuncio(Annuncio a_ins) {
-		// TODO Auto-generated method stub
+		EntityManager em = Dao.newInstance().createEntityManager();
+		em.getTransaction().begin();
+		
 		return false;
 	}
 
