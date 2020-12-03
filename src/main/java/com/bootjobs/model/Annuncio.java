@@ -5,23 +5,36 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+//import javax.persistence.Temporal;
+//import javax.persistence.TemporalType;
+//
+//import org.hibernate.annotations.GenericGenerator;
 
-import org.hibernate.annotations.GenericGenerator;
-
-
+//tte
 @Entity
-@Table(name = "")
+@Table(name = "annuncio")
 public class Annuncio {
 	
-	private Long id, id_societa_annuncio;
-	private String nome_annuncio, titolo_di_studio, tipo_contratto, descrizione;
-	private Territorio territorio;
-	private Categoria categoria;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_annuncio")
+	private Long id;
+//	private Long id_societa_annuncio;
+	@Column(name="nome_annuncio")
+	private String nome_annuncio;
+	@Column(name="titolo_di_studio")
+	private String titolo_di_studio;
+	@Column(name="tipo_contratto")
+	private String tipo_contratto;
+	@Column(name="descrizione")
+	private String descrizione;
+//	private Categoria categoria;
+	@Column(name="stipendio")
 	private Double stipendio;
+	@Column(name="data_pubblicazione")
 	Date data_pubblicazione;
 
 	public Annuncio() {
@@ -29,18 +42,23 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio(Long id, Long id_societa_annuncio, String nome_annuncio, String titolo_di_studio,
-			String tipo_contratto, String descrizione, Territorio territorio, Categoria categoria, Double stipendio,
+	public Annuncio(Long id, 
+//			Long id_societa_annuncio,
+			String nome_annuncio, String titolo_di_studio,
+			String tipo_contratto, String descrizione,
+//			Territorio territorio, 
+//			Categoria categoria, 
+			Double stipendio,
 			Date data_pubblicazione) {
 		super();
 		this.id = id;
-		this.id_societa_annuncio = id_societa_annuncio;
+//		this.id_societa_annuncio = id_societa_annuncio;
 		this.nome_annuncio = nome_annuncio;
 		this.titolo_di_studio = titolo_di_studio;
 		this.tipo_contratto = tipo_contratto;
 		this.descrizione = descrizione;
-		this.territorio = territorio;
-		this.categoria = categoria;
+//		this.territorio = territorio;
+//		this.categoria = categoria;
 		this.stipendio = stipendio;
 		this.data_pubblicazione = data_pubblicazione;
 	}
@@ -53,13 +71,13 @@ public class Annuncio {
 		this.id = id;
 	}
 
-	public Long getId_societa_annuncio() {
-		return id_societa_annuncio;
-	}
-
-	public void setId_societa_annuncio(Long id_societa_annuncio) {
-		this.id_societa_annuncio = id_societa_annuncio;
-	}
+//	public Long getId_societa_annuncio() {
+//		return id_societa_annuncio;
+//	}
+//
+//	public void setId_societa_annuncio(Long id_societa_annuncio) {
+//		this.id_societa_annuncio = id_societa_annuncio;
+//	}
 
 	public String getNome_annuncio() {
 		return nome_annuncio;
@@ -93,21 +111,21 @@ public class Annuncio {
 		this.descrizione = descrizione;
 	}
 
-	public Territorio getTerritorio() {
-		return territorio;
-	}
+//	public Territorio getTerritorio() {
+//		return territorio;
+//	}
+//
+//	public void setTerritorio(Territorio territorio) {
+//		this.territorio = territorio;
+//	}
 
-	public void setTerritorio(Territorio territorio) {
-		this.territorio = territorio;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+//	public Categoria getCategoria() {
+//		return categoria;
+//	}
+//
+//	public void setCategoria(Categoria categoria) {
+//		this.categoria = categoria;
+//	}
 
 	public Double getStipendio() {
 		return stipendio;
