@@ -13,4 +13,5 @@ public interface Annuncio_utility {
 	public boolean eliminaAnnuncio(int id, int id_soc);
 
 	public ArrayList<Annuncio> ricercanome_annuncio(String nome);
+
 }
