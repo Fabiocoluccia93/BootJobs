@@ -2,41 +2,53 @@ package com.bootjobs.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "")
+@Table(name = "tbcomuni")
 public class Territorio {
 
-	private String regione, provinica, comune;
+	@Column(name="nome_comune")
+	private String comune;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_comune")
+	private Long id;
+//	regione, provinica, 
 
 	public Territorio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Territorio(String regione, String provinica, String comune) {
+	public Territorio(String comune
+//			, String provinica, String regione
+			) {
 		super();
-		this.regione = regione;
-		this.provinica = provinica;
-		this.comune = comune;
+//		this.regione = regione;
+//		this.provinica = provinica;
+//		this.comune = comune;
 	}
 
-	public String getRegione() {
-		return regione;
-	}
-
-	public void setRegione(String regione) {
-		this.regione = regione;
-	}
-
-	public String getProvinica() {
-		return provinica;
-	}
-
-	public void setProvinica(String provinica) {
-		this.provinica = provinica;
-	}
+//	public String getRegione() {
+//		return regione;
+//	}
+//
+//	public void setRegione(String regione) {
+//		this.regione = regione;
+//	}
+//
+//	public String getProvinica() {
+//		return provinica;
+//	}
+//
+//	public void setProvinica(String provinica) {
+//		this.provinica = provinica;
+//	}
 
 	public String getComune() {
 		return comune;
