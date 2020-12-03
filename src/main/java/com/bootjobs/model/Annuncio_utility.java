@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public interface Annuncio_utility {
 
+	public Annuncio findById(Long id);
+	
 	public boolean inserisciAnnuncio(Annuncio a_ins);
 
 	public Annuncio modificaAnnuncio(Annuncio a_mod);
