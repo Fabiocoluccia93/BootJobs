@@ -39,4 +39,14 @@
     <servlet-name>Territorio_controller</servlet-name>
     <url-pattern>/Territorio_controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SocietaController</display-name>
+    <servlet-name>SocietaController</servlet-name>
+    <servlet-class>com.bootjobs.controller.SocietaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SocietaController</servlet-name>
+    <url-pattern>/SocietaController</url-pattern>
+  </servlet-mapping>
 </web-app>
