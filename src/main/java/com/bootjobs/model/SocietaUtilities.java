@@ -7,5 +7,7 @@ public interface SocietaUtilities {
 	public Societa modificaProfilo(Societa s_mod);
 	
 	public boolean eliminaProfilo(int id);
+	
+	public Societa accessoSocieta(String mail, String password);
 
 }

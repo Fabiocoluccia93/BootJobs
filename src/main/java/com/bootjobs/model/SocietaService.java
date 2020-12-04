@@ -17,4 +17,9 @@ public class SocietaService implements SocietaUtilities {
 		return false;
 	}
 
+	public Societa accessoSocieta(String mail, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -7,4 +7,8 @@ public class AmministratoreService implements AmministratoreUtilities {
 		return false;
 	}
 
+	public Societa accessoAmministratore(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

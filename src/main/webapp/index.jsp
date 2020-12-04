@@ -14,7 +14,7 @@
 <p align="right">
 <a  href="">iscrizione utente</a>
  | 
-<a  href="views/societaAccesso.jsp">per le società</a>
+<a  href="view/societaAccesso.jsp">per le società</a>
 </p>
 
 
