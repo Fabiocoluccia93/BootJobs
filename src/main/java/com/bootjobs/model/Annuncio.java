@@ -8,21 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//import javax.persistence.Temporal;
-//import javax.persistence.TemporalType;
-//
-//import org.hibernate.annotations.GenericGenerator;
 
-//tte
 @Entity
 @Table(name = "annuncio")
 public class Annuncio {
 	
+//	private Long id_societa_annuncio;
+//	private Categoria categoria;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_annuncio")
 	private Long id;
-//	private Long id_societa_annuncio;
 	@Column(name="nome_annuncio")
 	private String nome_annuncio;
 	@Column(name="titolo_di_studio")
@@ -31,7 +27,6 @@ public class Annuncio {
 	private String tipo_contratto;
 	@Column(name="descrizione")
 	private String descrizione;
-//	private Categoria categoria;
 	@Column(name="stipendio")
 	private Double stipendio;
 	@Column(name="data_pubblicazione")
@@ -42,7 +37,7 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio(Long id, 
+	public Annuncio( 
 //			Long id_societa_annuncio,
 			String nome_annuncio, String titolo_di_studio,
 			String tipo_contratto, String descrizione,
@@ -51,7 +46,7 @@ public class Annuncio {
 			Double stipendio,
 			Date data_pubblicazione) {
 		super();
-		this.id = id;
+		
 //		this.id_societa_annuncio = id_societa_annuncio;
 		this.nome_annuncio = nome_annuncio;
 		this.titolo_di_studio = titolo_di_studio;

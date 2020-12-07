@@ -1,13 +1,18 @@
 package com.bootjobs.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
+import com.bootjobs.model.Territorio_service;
 
 /**
  * Servlet implementation class Annuncio_controller
@@ -15,40 +20,59 @@ import com.bootjobs.model.Annuncio_Service;
 //@WebServlet("/Annuncio_controller")
 public class Annuncio_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Annuncio_controller() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public Annuncio_controller() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+//		PrintWriter out = response.getWriter();
 		Annuncio a = new Annuncio();
 		Annuncio_Service as = new Annuncio_Service();
-		double x = Double.parseDouble(request.getParameter("stipendio"));
+		Territorio_service t = new Territorio_service();
 		
-		a= as.findById(1l);
-		Annuncio b = new Annuncio();
-		b.setNome_annuncio(request.getParameter("nAnnuncio"));
-		b.setDescrizione(request.getParameter("descrizione"));
-		b.setStipendio(x);
-		b.setTipo_contratto(request.getParameter("tContratto"));
-		b.setTitolo_di_studio(request.getParameter("tStudio"));
-		as.inserisciAnnuncio(b);	}
+		double x = Double.parseDouble(request.getParameter("stipendio"));
+		String data = request.getParameter("data");
+		
+		Date dataU = null;
+		try {
+			dataU = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = sdf.parse(data);
+			dataU = date;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		java.sql.Date daras = new java.sql.Date(dataU.getTime());
+		
+		a.setNome_annuncio(request.getParameter("nAnnuncio"));
+		a.setDescrizione(request.getParameter("descrizione"));
+		a.setStipendio(x);
+		a.setTipo_contratto(request.getParameter("tContratto"));
+		a.setTitolo_di_studio(request.getParameter("tStudio"));
+		a.setData_pubblicazione(daras);
+		as.inserisciAnnuncio(a);
+		
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }

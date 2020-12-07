@@ -1,19 +1,19 @@
 package com.bootjobs.model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 public class Territorio_service implements Territorio_utility {
-	
-	ResultSet r = null;
-	Connection con = null;
-	Statement st = null;
-	
-	public ArrayList<String> get_all_regioni() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public List<Territorio> get_all_comuni() {
+
+		EntityManager em = Dao.newInstance().createEntityManager();
+
+		List<Territorio> depts = em.createQuery("Select a From Territorio a", Territorio.class).getResultList();
+		return depts;
+
 	}
 
 	public ArrayList<String> get_all(String nome) {

@@ -31,7 +31,7 @@ public class Territorio {
 		super();
 //		this.regione = regione;
 //		this.provinica = provinica;
-//		this.comune = comune;
+		this.comune = comune;
 	}
 
 //	public String getRegione() {
