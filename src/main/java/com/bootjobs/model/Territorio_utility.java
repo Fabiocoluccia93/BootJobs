@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface Territorio_utility {
 
-	public List<Territorio> get_all_comuni();
+	public List<Territorio> get_all_regioni();
 
 	public ArrayList<String> get_all(String nome);
 	

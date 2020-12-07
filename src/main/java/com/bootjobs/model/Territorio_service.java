@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 
 public class Territorio_service implements Territorio_utility {
 
-	public List<Territorio> get_all_comuni() {
+	public List<Territorio> get_all_regioni() {
 
 		EntityManager em = Dao.newInstance().createEntityManager();
 

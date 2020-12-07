@@ -26,14 +26,13 @@ public class Annuncio_Service implements Annuncio_utility {
 		em.persist(a_ins);
 		entr.commit();
 		em.close();
-		System.out.println(a_ins.getNome_annuncio());
+		System.out.println(a_ins.getNome_annuncio()+"E' stato inserito correttamente");
 
 		return true;
 	}
 
 	public Annuncio modificaAnnuncio(Annuncio a_mod) {
-		// TODO Auto-generated method stub
-		return null;
+	return null;
 	}
 
 	public boolean eliminaAnnuncio(int id, int id_soc) {

@@ -1,7 +1,6 @@
 package com.bootjobs.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
-import com.mysql.cj.protocol.WriterWatcher;
 
 /**
  * Servlet implementation class Territorio_controller
@@ -33,16 +31,18 @@ public class Territorio_controller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 PrintWriter out = response.getWriter();
 		Territorio_service ts = new Territorio_service();
 		
-		List<Territorio> comuni= ts.get_all_comuni();
+		List<Territorio> comuni= ts.get_all_regioni();
+		ArrayList<String> tbregioni = new ArrayList<String>();
 		for(int i = 0; i<comuni.size(); i++) {
 			Territorio a = comuni.get(i);
-			out.println(a.getComune());			
+			
+			tbregioni.add(a.getRegione());
 		}
 //		System.out.println(a.getComune());
-		request.setAttribute("listaComuni", comuni);
+		
+		request.setAttribute("listaRegioni", tbregioni);
 		
 		RequestDispatcher rs =request.getRequestDispatcher("/view/annuncio.jsp");
 		rs.forward(request, response);

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
-import com.bootjobs.model.Territorio_service;
 
 /**
  * Servlet implementation class Annuncio_controller
@@ -39,7 +38,6 @@ public class Annuncio_controller extends HttpServlet {
 //		PrintWriter out = response.getWriter();
 		Annuncio a = new Annuncio();
 		Annuncio_Service as = new Annuncio_Service();
-		Territorio_service t = new Territorio_service();
 		
 		double x = Double.parseDouble(request.getParameter("stipendio"));
 		String data = request.getParameter("data");
@@ -62,6 +60,7 @@ public class Annuncio_controller extends HttpServlet {
 		a.setTipo_contratto(request.getParameter("tContratto"));
 		a.setTitolo_di_studio(request.getParameter("tStudio"));
 		a.setData_pubblicazione(daras);
+		System.out.println("ciao sono la " + request.getParameter("regione"));
 		as.inserisciAnnuncio(a);
 		
 	}
