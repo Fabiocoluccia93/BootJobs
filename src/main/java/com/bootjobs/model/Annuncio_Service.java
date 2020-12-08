@@ -1,8 +1,11 @@
 package com.bootjobs.model;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
 
 public class Annuncio_Service implements Annuncio_utility {
 
@@ -13,12 +16,13 @@ public class Annuncio_Service implements Annuncio_utility {
 		a = em.find(Annuncio.class, id);
 		return a;
 	}
+
 	public Annuncio_Service() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public boolean inserisciAnnuncio(Annuncio a_ins) {
-		
+
 		EntityManager em = Dao.newInstance().createEntityManager();
 
 		EntityTransaction entr = em.getTransaction();
@@ -26,13 +30,27 @@ public class Annuncio_Service implements Annuncio_utility {
 		em.persist(a_ins);
 		entr.commit();
 		em.close();
-		System.out.println(a_ins.getNome_annuncio()+"E' stato inserito correttamente");
+		System.out.println(a_ins.getNome_annuncio() + "E' stato inserito correttamente");
 
 		return true;
 	}
 
-	public Annuncio modificaAnnuncio(Annuncio a_mod) {
-	return null;
+	public Annuncio modificaAnnuncio(String nomeAnnuncio, Annuncio a_mod) {
+		
+		EntityManager em = Dao.newInstance().createEntityManager();
+		EntityTransaction entr = em.getTransaction();
+
+		entr.begin();
+		Query query = em.createNamedQuery("Annuncio.edit");
+		query.setParameter("nome",nomeAnnuncio);
+		System.out.println(a_mod.getNome_annuncio());
+		query.setParameter("p", a_mod.getNome_annuncio());
+		query.executeUpdate();
+		entr.commit();
+		em.close();
+
+		
+		return null;
 	}
 
 	public boolean eliminaAnnuncio(int id, int id_soc) {
@@ -40,9 +58,21 @@ public class Annuncio_Service implements Annuncio_utility {
 		return false;
 	}
 
-	public ArrayList<Annuncio> ricercanome_annuncio(String nome) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<Annuncio> ricercanome_annuncio(String nome) {
+
+		EntityManager em = Dao.newInstance().createEntityManager();
+
+		Query q = em.createNamedQuery("Annuncio.findByName");
+
+		q.setParameter("name", nome);
+
+		List<Annuncio> annuncio = q.getResultList();
+
+		return annuncio;
+
 	}
+
+
 
 }

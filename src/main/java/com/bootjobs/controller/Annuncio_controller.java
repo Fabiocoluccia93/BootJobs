@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
@@ -38,6 +38,7 @@ public class Annuncio_controller extends HttpServlet {
 //		PrintWriter out = response.getWriter();
 		Annuncio a = new Annuncio();
 		Annuncio_Service as = new Annuncio_Service();
+		HttpSession session = request.getSession();
 		
 		double x = Double.parseDouble(request.getParameter("stipendio"));
 		String data = request.getParameter("data");
@@ -54,6 +55,7 @@ public class Annuncio_controller extends HttpServlet {
 		
 		java.sql.Date daras = new java.sql.Date(dataU.getTime());
 		
+//		a.setId_societa_annuncio(session.getAttribute(//session id societa));
 		a.setNome_annuncio(request.getParameter("nAnnuncio"));
 		a.setDescrizione(request.getParameter("descrizione"));
 		a.setStipendio(x);
@@ -62,6 +64,7 @@ public class Annuncio_controller extends HttpServlet {
 		a.setData_pubblicazione(daras);
 		System.out.println("ciao sono la " + request.getParameter("regione"));
 		as.inserisciAnnuncio(a);
+		
 		
 	}
 

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<form action="Annuncio_controller" method="get">
 
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
@@ -17,13 +18,17 @@
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="regione">
-			<c:forEach items="${requestScope.listaRegioni}" var="regioni">
+			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
 				<option value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br>
+		
+		
 
 		<button type="submit" value="Invia">Invia</button>
 
 	</form>
+	
+	<a href="view/modifica.jsp">Modifica evento</a>
 </body>
 </html>

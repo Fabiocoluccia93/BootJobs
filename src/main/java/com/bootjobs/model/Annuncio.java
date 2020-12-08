@@ -7,29 +7,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "annuncio")
+@NamedQueries({
+
+		@NamedQuery(name = "Annuncio.findByName", query = "select e from Annuncio e where e.nome_annuncio = :name"),
+		@NamedQuery(name = "Annuncio.edit", query = "update Annuncio a set a.nome_annuncio = :nome" + " where a.nome_annuncio = :p")
+
+})
+
 public class Annuncio {
-	
+
 //	private Long id_societa_annuncio;
 //	private Categoria categoria;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_annuncio")
+	@Column(name = "id_annuncio")
 	private Long id;
-	@Column(name="nome_annuncio")
+	@Column(name = "id_societa_annuncio")
+	private Long id_societa_annuncio;
+	@Column(name = "nome_annuncio")
 	private String nome_annuncio;
-	@Column(name="titolo_di_studio")
+	@Column(name = "titolo_di_studio")
 	private String titolo_di_studio;
-	@Column(name="tipo_contratto")
+	@Column(name = "tipo_contratto")
 	private String tipo_contratto;
-	@Column(name="descrizione")
+	@Column(name = "descrizione")
 	private String descrizione;
-	@Column(name="stipendio")
+	@Column(name = "stipendio")
 	private Double stipendio;
-	@Column(name="data_pubblicazione")
+	@Column(name = "data_pubblicazione")
 	Date data_pubblicazione;
 
 	public Annuncio() {
@@ -37,23 +48,20 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio( 
-//			Long id_societa_annuncio,
-			String nome_annuncio, String titolo_di_studio,
-			String tipo_contratto, String descrizione,
+	public Annuncio(
 //			Territorio territorio, 
 //			Categoria categoria, 
-			Double stipendio,
-			Date data_pubblicazione) {
+			String nome_annuncio, String titolo_di_studio, String tipo_contratto, String descrizione, Double stipendio,
+			Long id_societa_annuncio, Date data_pubblicazione) {
 		super();
-		
-//		this.id_societa_annuncio = id_societa_annuncio;
+
+//		this.territorio = territorio;
+//		this.categoria = categoria;
+		this.id_societa_annuncio = id_societa_annuncio;
 		this.nome_annuncio = nome_annuncio;
 		this.titolo_di_studio = titolo_di_studio;
 		this.tipo_contratto = tipo_contratto;
 		this.descrizione = descrizione;
-//		this.territorio = territorio;
-//		this.categoria = categoria;
 		this.stipendio = stipendio;
 		this.data_pubblicazione = data_pubblicazione;
 	}
@@ -65,14 +73,6 @@ public class Annuncio {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//	public Long getId_societa_annuncio() {
-//		return id_societa_annuncio;
-//	}
-//
-//	public void setId_societa_annuncio(Long id_societa_annuncio) {
-//		this.id_societa_annuncio = id_societa_annuncio;
-//	}
 
 	public String getNome_annuncio() {
 		return nome_annuncio;
@@ -138,6 +138,12 @@ public class Annuncio {
 		this.data_pubblicazione = data_pubblicazione;
 	}
 
+	public Long getId_societa_annuncio() {
+		return id_societa_annuncio;
+	}
 
+	public void setId_societa_annuncio(Long id_societa_annuncio) {
+		this.id_societa_annuncio = id_societa_annuncio;
+	}
 
 }

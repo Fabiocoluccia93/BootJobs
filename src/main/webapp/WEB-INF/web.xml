@@ -39,4 +39,14 @@
     <servlet-name>Territorio_controller</servlet-name>
     <url-pattern>/Territorio_controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificaAnnuncio_controller</display-name>
+    <servlet-name>ModificaAnnuncio_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.ModificaAnnuncio_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificaAnnuncio_controller</servlet-name>
+    <url-pattern>/ModificaAnnuncio_controller</url-pattern>
+  </servlet-mapping>
 </web-app>
