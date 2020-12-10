@@ -6,6 +6,28 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script>
+function getProvince() {
+	var ajax = new XMLHttpRequest();
+	
+	ajax.open('GET', 'Province', true);
+	
+	ajax.onload = function() {
+		
+	if(this.status == 200) {
+		
+		document.getElementById('province').innerHTML = this.responseText;
+			
+		} else if (this.status == 400) {
+			
+			document.getElementeById('province').innerHTML = "risorsa non trovata!";
+		}
+	}
+	ajax.send();
+}
+
+
+</script>
 </head>
 <body>
 
@@ -17,18 +39,21 @@
 		Tipo contratto<input type='text' id='tContratto' name='tContratto' /><br>
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
-		<select name="regione">
+		<select name="regione" >
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
-				<option value="${regioni}">${regioni}</option>
+				<option onclick="getProvince()" value="${regioni}">${regioni}</option>
 			</c:forEach>
-		</select><br>
-		
-		
+		</select><br> 
+
+		<select id="province">
+
+		</select>
+
 
 		<button type="submit" value="Invia">Invia</button>
 
 	</form>
-	
+
 	<a href="view/modifica.jsp">Modifica evento</a>
 </body>
 </html>

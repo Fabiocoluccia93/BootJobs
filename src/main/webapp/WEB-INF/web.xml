@@ -49,4 +49,24 @@
     <servlet-name>ModificaAnnuncio_controller</servlet-name>
     <url-pattern>/ModificaAnnuncio_controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Province_controller</display-name>
+    <servlet-name>Province_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Province_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Province_controller</servlet-name>
+    <url-pattern>/Province_controller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Province</display-name>
+    <servlet-name>Province</servlet-name>
+    <servlet-class>com.bootjobs.controller.Province</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Province</servlet-name>
+    <url-pattern>/Province</url-pattern>
+  </servlet-mapping>
 </web-app>

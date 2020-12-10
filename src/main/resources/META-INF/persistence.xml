@@ -16,6 +16,8 @@
         <class>com.bootjobs.model.Annuncio_service</class>
         <class>com.bootjobs.model.Territorio</class>
         <class>com.bootjobs.model.Territorio_service</class>
+        <class>com.bootjobs.model.Provincia</class>
+        
         
 
         <properties>
