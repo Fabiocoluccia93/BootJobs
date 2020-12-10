@@ -8,21 +8,42 @@
 <title>Insert title here</title>
 <script>
 function getProvince() {
+	
+
 	var ajax = new XMLHttpRequest();
 	
-	ajax.open('GET', 'Province', true);
+	ajax.open('GET', 'Province_controller', true);
 	
 	ajax.onload = function() {
 		
 	if(this.status == 200) {
 		
-		document.getElementById('province').innerHTML = this.responseText;
+
+	document.getElementById('province').innerHTML = this.responseText;
 			
 		} else if (this.status == 400) {
 			
 			document.getElementeById('province').innerHTML = "risorsa non trovata!";
 		}
 	}
+	
+	ajax.send();
+}
+
+function test(){
+
+	var ajax = new XMLHttpRequest();
+	
+	ajax.open('GET', 'Province_controller', true);
+	
+	ajax.onload = function() {
+		if(this.status == 200) {
+			
+			var tregioni = document.getElementById('dRegione');
+		}
+		
+	}
+	
 	ajax.send();
 }
 
@@ -41,7 +62,7 @@ function getProvince() {
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="regione" >
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
-				<option onclick="getProvince()" value="${regioni}">${regioni}</option>
+				<option id="dRegione" onclick="test()" value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br> 
 

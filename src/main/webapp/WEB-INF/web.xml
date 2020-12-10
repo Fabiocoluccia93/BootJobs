@@ -69,4 +69,14 @@
     <servlet-name>Province</servlet-name>
     <url-pattern>/Province</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RicercaEvento_controller</display-name>
+    <servlet-name>RicercaEvento_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.RicercaEvento_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RicercaEvento_controller</servlet-name>
+    <url-pattern>/RicercaEvento_controller</url-pattern>
+  </servlet-mapping>
 </web-app>

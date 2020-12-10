@@ -1,5 +1,6 @@
 package com.bootjobs.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -64,12 +65,14 @@ public class Annuncio_Service implements Annuncio_utility {
 		EntityManager em = Dao.newInstance().createEntityManager();
 
 		Query q = em.createNamedQuery("Annuncio.findByName");
+		
+		List<Annuncio> lAnnuncio = new ArrayList<Annuncio>();
 
 		q.setParameter("name", nome);
 
-		List<Annuncio> annuncio = q.getResultList();
+		lAnnuncio = q.getResultList();
 
-		return annuncio;
+		return lAnnuncio;
 
 	}
 

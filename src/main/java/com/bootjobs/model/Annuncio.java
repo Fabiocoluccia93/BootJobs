@@ -15,8 +15,8 @@ import javax.persistence.Table;
 @Table(name = "annuncio")
 @NamedQueries({
 
-		@NamedQuery(name = "Annuncio.findByName", query = "select e from Annuncio e where e.nome_annuncio = :name"),
-		@NamedQuery(name = "Annuncio.edit", query = "update Annuncio a set a.nome_annuncio = :nome" + " where a.nome_annuncio = :p")
+		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio = :name"),
+		@NamedQuery(name = "Annuncio.edit", query = "update Annuncio a set a.nome_annuncio = :nome" + " where a.nome_annuncio = :p"),
 
 })
 

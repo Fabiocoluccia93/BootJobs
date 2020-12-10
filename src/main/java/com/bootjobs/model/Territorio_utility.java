@@ -7,7 +7,10 @@ public interface Territorio_utility {
 
 	public List<Territorio> get_all_regioni();
 
+	public List<Provincia> get_all_province();
+
+	public List<Territorio> get_all_comuni();
+
 	public ArrayList<String> get_all(String nome);
-	
-	
+
 }

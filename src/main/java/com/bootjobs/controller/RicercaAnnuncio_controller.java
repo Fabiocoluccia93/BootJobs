@@ -1,28 +1,27 @@
 package com.bootjobs.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bootjobs.model.Provincia;
-import com.bootjobs.model.Territorio_service;
-
+import com.bootjobs.model.Annuncio;
+import com.bootjobs.model.Annuncio_Service;
 
 /**
- * Servlet implementation class Province
+ * Servlet implementation class RicercaEvento_controller
  */
-public class Province extends HttpServlet {
+public class RicercaAnnuncio_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Province() {
+    public RicercaAnnuncio_controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +30,24 @@ public class Province extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-		Territorio_service ts = new Territorio_service();
-		String regioni = request.getParameter("regione");
-		System.out.println(regioni);
 		
-		List<Provincia> lp = ts.get_All_provincie();
+		Annuncio_Service as = new Annuncio_Service();
+		Annuncio a = new Annuncio();
+		String nAnnuncio = request.getParameter("nomeAnnuncio");
+		System.out.println(nAnnuncio);
 		
-		for(int i = 0; i<lp.size();i++) {
-			out.println("<option>" + lp.get(i).getNome_provincia() + "</option>");
-		}	}
+		List<Annuncio> listaAnnuncio = as.ricercanome_annuncio(nAnnuncio);
+		
+		for (int i = 0; i < listaAnnuncio.size(); i++) {
+			a = listaAnnuncio.get(i);
+			System.out.println(a.getNome_annuncio());
+		}
+		
+		request.setAttribute("annunci", listaAnnuncio);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/view/risultati_annuncio.jsp");
+		rd.include(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
