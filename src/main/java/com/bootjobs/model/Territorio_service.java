@@ -27,6 +27,7 @@ public class Territorio_service implements Territorio_utility {
 	public List<Provincia> get_all_province() {
 
 		Query query = em.createNamedQuery("getProvince");
+		//query.setParameter("", "");
 		List<Provincia> pro = new ArrayList<Provincia>();
 
 		entr.begin();
@@ -37,9 +38,18 @@ public class Territorio_service implements Territorio_utility {
 		return pro;
 	}
 
-	public List<Territorio> get_all_comuni() {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<Comuni> get_all_comuni() {
+		Query query = em.createNamedQuery("findiComuni");
+		//query.setParameter("p", "");
+		List<Comuni> com = new ArrayList<Comuni>();
+
+		entr.begin();
+		com = query.getResultList();
+		entr.commit();
+		em.close();
+
+		return com;
 	}
 
 }

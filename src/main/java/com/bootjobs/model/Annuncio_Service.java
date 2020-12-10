@@ -64,7 +64,7 @@ public class Annuncio_Service implements Annuncio_utility {
 
 		EntityManager em = Dao.newInstance().createEntityManager();
 
-		Query q = em.createNamedQuery("Annuncio.findByName");
+		Query q = em.createNamedQuery("searchAnnuncio");
 		
 		List<Annuncio> lAnnuncio = new ArrayList<Annuncio>();
 

@@ -30,29 +30,35 @@ function getProvince() {
 	ajax.send();
 }
 
-function test(){
+function getComuni(){
 
 	var ajax = new XMLHttpRequest();
 	
-	ajax.open('GET', 'Province_controller', true);
+	ajax.open('GET', 'Comuni_controller', true);
 	
 	ajax.onload = function() {
-		if(this.status == 200) {
-			
-			var tregioni = document.getElementById('dRegione');
-		}
 		
+	if(this.status == 200) {
+		
+
+	document.getElementById('comuni').innerHTML = this.responseText;
+			
+		} else if (this.status == 400) {
+			
+			document.getElementeById('comuni').innerHTML = "risorsa non trovata!";
+		}
 	}
 	
 	ajax.send();
 }
 
 
+
 </script>
 </head>
 <body>
 
-	<form action="Annuncio_controller" method="get">
+	<form action="alessio" method="get">
 
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
@@ -60,14 +66,20 @@ function test(){
 		Tipo contratto<input type='text' id='tContratto' name='tContratto' /><br>
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
-		<select name="regione" >
+		<select name="regione">
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
-				<option id="dRegione" onclick="test()" value="${regioni}">${regioni}</option>
+				<option id="dRegione" onclick="getProvince()" value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br> 
-
+		
 		<select id="province">
+			<option>
+			</option>
 
+		</select> 
+		<select id="comuni">
+			<option>
+			</option>
 		</select>
 
 

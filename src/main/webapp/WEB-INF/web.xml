@@ -79,4 +79,24 @@
     <servlet-name>RicercaEvento_controller</servlet-name>
     <url-pattern>/RicercaEvento_controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Ricerca_controller</display-name>
+    <servlet-name>Ricerca_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Ricerca_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ricerca_controller</servlet-name>
+    <url-pattern>/Ricerca_controller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Comuni_controller</display-name>
+    <servlet-name>Comuni_controller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Comuni_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Comuni_controller</servlet-name>
+    <url-pattern>/Comuni_controller</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -13,15 +13,15 @@ import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
 
 /**
- * Servlet implementation class RicercaEvento_controller
+ * Servlet implementation class Ricerca_controller
  */
-public class RicercaAnnuncio_controller extends HttpServlet {
+public class Ricerca_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RicercaAnnuncio_controller() {
+    public Ricerca_controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,8 @@ public class RicercaAnnuncio_controller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Annuncio_Service as = new Annuncio_Service();
 		Annuncio a = new Annuncio();
 		String nAnnuncio = request.getParameter("nomeAnnuncio");

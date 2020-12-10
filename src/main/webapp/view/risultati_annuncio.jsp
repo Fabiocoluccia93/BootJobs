@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +8,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="1">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Middle Name</th>
-      <th>Last Name</th>
-    </tr>
-  </thead>
-  <tbody>
-     <c:forEach items="${requestScope.annunci}" var="name">
-       <tr>
-         <td>${name.firstName}</td>
-         <td>${name.middleName}</td>
-         <td>${name.lastName}</td>
-       </tr>
-     </c:forEach>
-  </tbody>
-</table>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Nome Annuncio</th>
+				<th>Descrizione</th>
+				<th>Titolo di Studio</th>
+				<th>Tipo_contratto</th>
+				<th>Stipendio</th>
+				<th>Data pubblicazione</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${requestScope.annunci}" var="annuncio">
+				<tr>
+					<td>${annuncio.nome_annuncio}</td>
+					<td>${annuncio.descrizione}</td>
+					<td>${annuncio.titolo_di_studio}</td>
+					<td>${annuncio.tipo_contratto}</td>
+					<td>${annuncio.stipendio}</td>
+					<td>${annuncio.data_pubblicazione}</td>
+
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>
