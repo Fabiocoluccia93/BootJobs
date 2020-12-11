@@ -35,10 +35,11 @@ public class Province_controller extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		Territorio_service ts = new Territorio_service();
-		String regioni = request.getParameter("tregioni");
+		String regioni = request.getParameter("regioni");
+		Integer regione = Integer.parseInt(regioni);
 		System.out.println("ti prego " + regioni);
 		
-		List<Provincia> lp = ts.get_all_province();
+		List<Provincia> lp = ts.get_all_province(regione);
 		
 		for(int i = 0; i<lp.size();i++) {
 			out.println("<option>" + lp.get(i).getNome_provincia() + "</option>");

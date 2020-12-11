@@ -40,7 +40,7 @@ public class Comuni_controller extends HttpServlet {
 		String regioni = request.getParameter("");
 		System.out.println("ti prego " + regioni);
 
-		List<Comuni> lp = ts.get_all_comuni();
+		List<Comuni> lp = ts.get_all_comuni(regioni);
 
 		for (int i = 0; i < lp.size(); i++) {
 			out.println("<option onclick='+getProvince()'>" + lp.get(i).getNome_comune() + "</option>");

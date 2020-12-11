@@ -11,14 +11,14 @@ function getProvince() {
 	
 
 	var ajax = new XMLHttpRequest();
+	var regioni = document.getElementById('regione').value;
 	
-	ajax.open('GET', 'Province_controller', true);
+	ajax.open('GET', 'Province_controller?regioni='+ regioni, true);
 	
 	ajax.onload = function() {
 		
 	if(this.status == 200) {
 		
-
 	document.getElementById('province').innerHTML = this.responseText;
 			
 		} else if (this.status == 400) {
@@ -66,9 +66,9 @@ function getComuni(){
 		Tipo contratto<input type='text' id='tContratto' name='tContratto' /><br>
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
-		<select name="regione">
+		<select name="tregione" id="regione" onchange="getProvince()">
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
-				<option id="dRegione" onclick="getProvince()" value="${regioni}">${regioni}</option>
+				<option id="dRegione"  value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br> 
 		

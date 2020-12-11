@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbprovince")
-@NamedQuery(name = "getProvince", query = "select a from Provincia a")
+@NamedQuery(name = "getProvince", query = "select a from Provincia a where a.codiceistatregione_provincia = :p")
 public class Provincia {
 
 	/**
