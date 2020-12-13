@@ -10,8 +10,11 @@ import javax.persistence.Query;
 
 public class Annuncio_Service implements Annuncio_utility {
 
+	EntityManager em = Dao.newInstance().createEntityManager();
+	EntityTransaction entr = em.getTransaction();
+
+
 	public Annuncio findById(Long id) {
-		EntityManager em = Dao.newInstance().createEntityManager();
 		Annuncio a = new Annuncio();
 		em.getTransaction().begin();
 		a = em.find(Annuncio.class, id);
@@ -24,22 +27,18 @@ public class Annuncio_Service implements Annuncio_utility {
 
 	public boolean inserisciAnnuncio(Annuncio a_ins) {
 
-		EntityManager em = Dao.newInstance().createEntityManager();
-
-		EntityTransaction entr = em.getTransaction();
+	
 		entr.begin();
 		em.persist(a_ins);
 		entr.commit();
 		em.close();
-		System.out.println(a_ins.getNome_annuncio() + "E' stato inserito correttamente");
 
 		return true;
 	}
 
 	public Annuncio modificaAnnuncio(String nomeAnnuncio, Annuncio a_mod) {
 		
-		EntityManager em = Dao.newInstance().createEntityManager();
-		EntityTransaction entr = em.getTransaction();
+		
 
 		entr.begin();
 		Query query = em.createNamedQuery("Annuncio.edit");
@@ -74,6 +73,13 @@ public class Annuncio_Service implements Annuncio_utility {
 
 		return lAnnuncio;
 
+	}
+
+	public List<Annuncio> getTipoContratto() {
+		
+
+			List<Annuncio> contratti = em.createQuery("Select a. From Annuncio a", Annuncio.class).getResultList();
+			return contratti;		
 	}
 
 

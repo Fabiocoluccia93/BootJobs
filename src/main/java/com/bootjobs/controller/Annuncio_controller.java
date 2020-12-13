@@ -1,6 +1,7 @@
 package com.bootjobs.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,8 +35,9 @@ public class Annuncio_controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		
-//		PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 		Annuncio a = new Annuncio();
 		Annuncio_Service as = new Annuncio_Service();
 		HttpSession session = request.getSession();
@@ -56,13 +58,17 @@ public class Annuncio_controller extends HttpServlet {
 		java.sql.Date daras = new java.sql.Date(dataU.getTime());
 		
 //		a.setId_societa_annuncio(session.getAttribute(//session id societa));
+		if(request.getParameter("nAnnuncio").equals("")) {
+			out.println("il campo e' vuoto");
+		}
 		a.setNome_annuncio(request.getParameter("nAnnuncio"));
 		a.setDescrizione(request.getParameter("descrizione"));
 		a.setStipendio(x);
 		a.setTipo_contratto(request.getParameter("tContratto"));
 		a.setTitolo_di_studio(request.getParameter("tStudio"));
 		a.setData_pubblicazione(daras);
-		System.out.println("ciao sono la " + request.getParameter("regione"));
+		a.setComune(request.getParameter("lComuni"));
+		System.out.println("ciao sono la " + request.getParameter("lComuni"));
 		as.inserisciAnnuncio(a);
 		
 		

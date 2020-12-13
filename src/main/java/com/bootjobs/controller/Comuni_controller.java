@@ -2,6 +2,10 @@ package com.bootjobs.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.Collator;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bootjobs.model.Comuni;
+import com.bootjobs.model.Provincia;
 import com.bootjobs.model.Territorio_service;
 
 /**
@@ -37,13 +42,18 @@ public class Comuni_controller extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		Territorio_service ts = new Territorio_service();
-		String regioni = request.getParameter("");
-		System.out.println("ti prego " + regioni);
+		Provincia pro = new Provincia();
+		String province = request.getParameter("province");
+		System.out.println("ti prego " + province);
 
-		List<Comuni> lp = ts.get_all_comuni(regioni);
+		List<Provincia> siglaPro =ts.getSiglaPro(province);
+		pro = siglaPro.get(0);
+		
+		
+		List<Comuni> lp = ts.get_all_comuni(pro.getSigla());
 
 		for (int i = 0; i < lp.size(); i++) {
-			out.println("<option onclick='+getProvince()'>" + lp.get(i).getNome_comune() + "</option>");
+			out.println("<option>" + lp.get(i).getNome_comune() + "</option>");
 		}
 	}
 

@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbregioni")
+@NamedQueries({
+	@NamedQuery(name="findCodIstat", query="select c from Territorio c where c.regione = :r")
+	
+})
 public class Territorio {
 
 	@Column(name="nome_regione")
@@ -19,7 +25,7 @@ public class Territorio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="codiceistat_regione")
-	private Long id;
+	private int id;
 //	regione, provinica, 
 
 	public Territorio() {
@@ -30,9 +36,11 @@ public class Territorio {
 	public Territorio(
 			//String comune
 //			, String provinica, 
+			int id,
 			String regione
 			) {
 		super();
+		this.id = id;
 		this.regione = regione;
 //		this.provinica = provinica;
 //		this.comune = comune;
@@ -53,6 +61,14 @@ public class Territorio {
 //	public void setProvinica(String provinica) {
 //		this.provinica = provinica;
 //	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 //	public String getComune() {
 //		return comune;

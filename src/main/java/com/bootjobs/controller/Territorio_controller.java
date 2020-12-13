@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bootjobs.model.Annuncio;
+import com.bootjobs.model.Annuncio_Service;
 import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
 
@@ -35,16 +37,27 @@ public class Territorio_controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Territorio_service ts = new Territorio_service();
+		Annuncio_Service as = new Annuncio_Service();
 		HttpSession session = request.getSession();
 
 		List<Territorio> comuni = ts.get_all_regioni();
 		ArrayList<String> tbregioni = new ArrayList<String>();
 		for (int i = 0; i < comuni.size(); i++) {
-			Territorio a = comuni.get(i);
+			Territorio t = comuni.get(i);
 
-			tbregioni.add(a.getRegione());
+			tbregioni.add(t.getRegione());
 		}
-
+		
+//		List<Annuncio> contratto = as.getTipoContratto();
+//		ArrayList<String> tContratto = new ArrayList<String>();
+//		for (int i = 0; i < contratto.size(); i++) {
+//			Annuncio a = contratto.get(i);
+//
+//			tContratto.add(a.getContratto());
+//			System.out.println(a.getContratto());
+//		}
+		
+		//session.setAttribute("listaContratti", tContratto);
 		session.setAttribute("listaRegioni", tbregioni);
 
 		RequestDispatcher rs = request.getRequestDispatcher("/view/annuncio.jsp");

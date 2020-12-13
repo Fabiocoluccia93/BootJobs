@@ -33,8 +33,9 @@ function getProvince() {
 function getComuni(){
 
 	var ajax = new XMLHttpRequest();
+	var province = document.getElementById('province').value;
 	
-	ajax.open('GET', 'Comuni_controller', true);
+	ajax.open('GET', 'Comuni_controller?province='+ province, true);
 	
 	ajax.onload = function() {
 		
@@ -58,12 +59,17 @@ function getComuni(){
 </head>
 <body>
 
-	<form action="alessio" method="get">
+	<form action="Annuncio_controller" method="get">
 
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
 		Titolo di studio<input type='text' id='tStudio' name='tStudio' /><br>
 		Tipo contratto<input type='text' id='tContratto' name='tContratto' /><br>
+		<select name="tContratti">
+			<c:forEach items="${sessionScope.listaContratti}" var="contratti">
+				<option  value="${contratti}">${contratti}</option>
+			</c:forEach>
+		</select><br> 
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="tregione" id="regione" onchange="getProvince()">
@@ -72,14 +78,11 @@ function getComuni(){
 			</c:forEach>
 		</select><br> 
 		
-		<select id="province">
-			<option>
-			</option>
+		<select id="province" onchange="getComuni()">
 
-		</select> 
-		<select id="comuni">
-			<option>
-			</option>
+		</select> <br>
+		<select id="comuni" name="lComuni">
+			
 		</select>
 
 

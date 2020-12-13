@@ -13,5 +13,7 @@ public interface Annuncio_utility {
 	public boolean eliminaAnnuncio(int id, int id_soc);
 
 	public List<Annuncio> ricercanome_annuncio(String nome);
+	
+	public List<Annuncio> getTipoContratto();
 
 }

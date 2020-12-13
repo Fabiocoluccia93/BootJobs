@@ -9,13 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "annuncio")
+@SecondaryTable(name="tipologia", pkJoinColumns = @PrimaryKeyJoinColumn(name="id_tipologia"))
 @NamedQueries({
 
-		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio = :name"),
+		//@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio = :name"),
 		@NamedQuery(name = "Annuncio.edit", query = "update Annuncio a set a.nome_annuncio = :nome" + " where a.nome_annuncio = :p"),
 
 })
@@ -42,6 +45,10 @@ public class Annuncio {
 	private Double stipendio;
 	@Column(name = "data_pubblicazione")
 	Date data_pubblicazione;
+	@Column(name = "comune")
+	private String comune;
+	@Column(name="tipo_contratto", table="tipologia")
+	private String contratto;
 
 	public Annuncio() {
 		super();
@@ -144,6 +151,22 @@ public class Annuncio {
 
 	public void setId_societa_annuncio(Long id_societa_annuncio) {
 		this.id_societa_annuncio = id_societa_annuncio;
+	}
+
+	public String getComune() {
+		return comune;
+	}
+
+	public void setComune(String comune) {
+		this.comune = comune;
+	}
+
+	public String getContratto() {
+		return contratto;
+	}
+
+	public void setContratto(String contratto) {
+		this.contratto = contratto;
 	}
 
 }

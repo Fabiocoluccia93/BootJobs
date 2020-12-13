@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tbcomuni")
 @NamedQueries({
-	@NamedQuery(name="findComuni", query="select c from Comuni c ")
-//	where c.siglaprovincia_comune = :p
+	@NamedQuery(name="findComuni", query="select c from Comuni c where c.siglaprovincia_comune = :p")
+
 })
 public class Comuni {
 
