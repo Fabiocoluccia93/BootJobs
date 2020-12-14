@@ -38,7 +38,6 @@
 		<td><b>Nome</b></td>
 		<td><b>Cognome</b></td>
 		<td><b>Numero Telefonico</b></td>
-		<td><b>password</b></td>
 		
 	</tr>
 
@@ -49,7 +48,6 @@
 			<td><c:out value="${societa.nome}">${societa.nome }</c:out></td>
 			<td><c:out value="${societa.cognome}">${societa.cognome }</c:out></td>
 			<td><c:out value="${societa.telefono}">${societa.telefono }</c:out></td>
-			<td><c:out value="${societa.password}">${societa.password }</c:out></td>
 		</tr>
 </table>	
 
