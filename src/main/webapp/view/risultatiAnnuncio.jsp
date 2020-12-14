@@ -23,7 +23,7 @@
 		<tbody>
 				<c:forEach items="${requestScope.annunci}" var="annuncio">
 				<tr>
-					<td><a href="view/dettagliAnnuncio.jsp?nome_annuncio=${annuncio.nome_annuncio}">${annuncio.nome_annuncio}</a></td>
+					<td><a href="view/dettagliAnnuncio.jsp?nome_annuncio=${annuncio.nome_annuncio}&descrizione=${annuncio.descrizione}&comune=${annuncio.comune}">${annuncio.nome_annuncio}</a></td>
 					<td>${annuncio.descrizione}</td>
 					<td>${annuncio.titolo_di_studio}</td>
 					<td>${annuncio.tipo_contratto}</td>

@@ -99,4 +99,14 @@
     <servlet-name>Comuni_controller</servlet-name>
     <url-pattern>/Comuni_controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Territorio1_cotroller</display-name>
+    <servlet-name>Territorio1_cotroller</servlet-name>
+    <servlet-class>com.bootjobs.controller.Territorio1_cotroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Territorio1_cotroller</servlet-name>
+    <url-pattern>/Territorio1_cotroller</url-pattern>
+  </servlet-mapping>
 </web-app>

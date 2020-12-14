@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "annuncio")
 @NamedQueries({
 
-		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio like '%:name%'"),
+		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio like :name"),
 		@NamedQuery(name = "Annuncioedit", query = "update Annuncio a set a.nome_annuncio = :nome where a.nome_annuncio = :p"),
 
 })

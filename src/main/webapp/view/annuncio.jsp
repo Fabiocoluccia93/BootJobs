@@ -72,6 +72,7 @@ function getComuni(){
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="tregione" id="regione" onchange="getProvince()">
+		
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
 				<option id="dRegione" value="${regioni}">${regioni}</option>
 			</c:forEach>
@@ -86,6 +87,6 @@ function getComuni(){
 
 	</form>
 
-	<a href="view/modifica.jsp">Modifica evento</a>
+	<a href="Territorio1_cotroller">Modifica evento</a>
 </body>
 </html>

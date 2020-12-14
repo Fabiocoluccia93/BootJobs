@@ -18,16 +18,18 @@ Hello <b></b>!
 				<th>Tipo_contratto</th>
 				<th>Stipendio</th>
 				<th>Data pubblicazione</th>
+				<th>Comune</th>
 			</tr>
 		</thead>
 		<tbody>
 				<tr>
 					<td><%= request.getParameter("nome_annuncio") %></td>
+					<td><%= request.getParameter("descrizione") %></td>
 					<td><%= request.getParameter("nome_annuncio") %></td>
 					<td><%= request.getParameter("nome_annuncio") %></td>
 					<td><%= request.getParameter("nome_annuncio") %></td>
 					<td><%= request.getParameter("nome_annuncio") %></td>
-					<td><%= request.getParameter("nome_annuncio") %></td>
+					<td><%= request.getParameter("comune") %></td>
 
 
 				</tr>

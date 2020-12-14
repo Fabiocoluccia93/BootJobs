@@ -59,6 +59,7 @@ public class Annuncio_controller extends HttpServlet {
 		//if(new SimpleDateFormat("yyyy-MM-dd").parse(data).before(new Date())) {
 			//System.out.println("la data e' sbagliata");
 		//} else {
+	
 			java.sql.Date daras = new java.sql.Date(dataU.getTime());
 			
 		//}
@@ -99,7 +100,8 @@ public class Annuncio_controller extends HttpServlet {
 			out.println("il campo e' vuoto");
 			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
 			rs.include(request, response);
-		} else {
+		} 
+			
 			
 			a.setId_societa_annuncio(1l);
 			
@@ -115,7 +117,7 @@ public class Annuncio_controller extends HttpServlet {
 		}
 		
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

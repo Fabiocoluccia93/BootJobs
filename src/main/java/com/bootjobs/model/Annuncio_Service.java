@@ -60,7 +60,7 @@ public class Annuncio_Service implements Annuncio_utility {
 	public List<Annuncio> ricercanome_annuncio(String nome) {
 
 		Query q = em.createNamedQuery("searchAnnuncio");
-		q.setParameter("name", nome);
+		q.setParameter("name", "%"+ nome +"%");
 
 		List<Annuncio> lAnnuncio = new ArrayList<Annuncio>();
 

@@ -44,10 +44,10 @@ public class Territorio_controller extends HttpServlet {
 		Annuncio_Service as = new Annuncio_Service();
 		HttpSession session = request.getSession();
 
-		List<Territorio> comuni = ts.get_all_regioni();
+		List<Territorio> regioni = ts.get_all_regioni();
 		ArrayList<String> tbregioni = new ArrayList<String>();
-		for (int i = 0; i < comuni.size(); i++) {
-			Territorio t = comuni.get(i);
+		for (int i = 0; i < regioni.size(); i++) {
+			Territorio t = regioni.get(i);
 
 			tbregioni.add(t.getRegione());
 		}
