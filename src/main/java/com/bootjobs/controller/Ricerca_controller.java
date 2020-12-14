@@ -31,7 +31,6 @@ public class Ricerca_controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Annuncio_Service as = new Annuncio_Service();
 		Annuncio a = new Annuncio();
 		String nAnnuncio = request.getParameter("nomeAnnuncio");
@@ -46,7 +45,7 @@ public class Ricerca_controller extends HttpServlet {
 		
 		request.setAttribute("annunci", listaAnnuncio);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/view/risultati_annuncio.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncio.jsp");
 		rd.include(request, response);
 	}
 

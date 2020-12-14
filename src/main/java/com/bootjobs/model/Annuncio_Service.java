@@ -7,12 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-
 public class Annuncio_Service implements Annuncio_utility {
 
 	EntityManager em = Dao.newInstance().createEntityManager();
 	EntityTransaction entr = em.getTransaction();
-
 
 	public Annuncio findById(Long id) {
 		Annuncio a = new Annuncio();
@@ -27,7 +25,6 @@ public class Annuncio_Service implements Annuncio_utility {
 
 	public boolean inserisciAnnuncio(Annuncio a_ins) {
 
-	
 		entr.begin();
 		em.persist(a_ins);
 		entr.commit();
@@ -36,21 +33,22 @@ public class Annuncio_Service implements Annuncio_utility {
 		return true;
 	}
 
-	public Annuncio modificaAnnuncio(String nomeAnnuncio, Annuncio a_mod) {
-		
-		
+	public boolean modificaAnnuncio(String nomeAnnuncio, Annuncio a_mod) {
 
+		boolean bo = false;
 		entr.begin();
-		Query query = em.createNamedQuery("Annuncio.edit");
-		query.setParameter("nome",nomeAnnuncio);
+		Query query = em.createNamedQuery("Annuncioedit");
+		query.setParameter("nome", a_mod.getNome_annuncio());
 		System.out.println(a_mod.getNome_annuncio());
-		query.setParameter("p", a_mod.getNome_annuncio());
-		query.executeUpdate();
+		query.setParameter("p", nomeAnnuncio);
+		int check = query.executeUpdate();
 		entr.commit();
 		em.close();
 
-		
-		return null;
+		if(check >= 1) {
+			return bo = true;
+		}
+		return bo;
 	}
 
 	public boolean eliminaAnnuncio(int id, int id_soc) {
@@ -61,27 +59,25 @@ public class Annuncio_Service implements Annuncio_utility {
 	@SuppressWarnings("unchecked")
 	public List<Annuncio> ricercanome_annuncio(String nome) {
 
-		EntityManager em = Dao.newInstance().createEntityManager();
-
 		Query q = em.createNamedQuery("searchAnnuncio");
-		
-		List<Annuncio> lAnnuncio = new ArrayList<Annuncio>();
-
 		q.setParameter("name", nome);
 
+		List<Annuncio> lAnnuncio = new ArrayList<Annuncio>();
+
+		entr.begin();
+
 		lAnnuncio = q.getResultList();
+		entr.commit();
+		em.close();
 
 		return lAnnuncio;
 
 	}
 
 	public List<Annuncio> getTipoContratto() {
-		
 
-			List<Annuncio> contratti = em.createQuery("Select a. From Annuncio a", Annuncio.class).getResultList();
-			return contratti;		
+		List<Annuncio> contratti = em.createQuery("Select a. From Annuncio a", Annuncio.class).getResultList();
+		return contratti;
 	}
-
-
 
 }

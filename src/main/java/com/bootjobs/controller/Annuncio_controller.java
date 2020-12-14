@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,21 +56,63 @@ public class Annuncio_controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		java.sql.Date daras = new java.sql.Date(dataU.getTime());
+		//if(new SimpleDateFormat("yyyy-MM-dd").parse(data).before(new Date())) {
+			//System.out.println("la data e' sbagliata");
+		//} else {
+			java.sql.Date daras = new java.sql.Date(dataU.getTime());
+			
+		//}
 		
+//		Long l = Long.parseLong(session.getAttribute("idSocieta"));
 //		a.setId_societa_annuncio(session.getAttribute(//session id societa));
-		if(request.getParameter("nAnnuncio").equals("")) {
-			out.println("il campo e' vuoto");
+		if(request.getParameter("nAnnuncio").equals(null)) {
+			out.println("Inserisci un nome per l'evento");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
 		}
-		a.setNome_annuncio(request.getParameter("nAnnuncio"));
-		a.setDescrizione(request.getParameter("descrizione"));
-		a.setStipendio(x);
-		a.setTipo_contratto(request.getParameter("tContratto"));
-		a.setTitolo_di_studio(request.getParameter("tStudio"));
-		a.setData_pubblicazione(daras);
-		a.setComune(request.getParameter("lComuni"));
-		System.out.println("ciao sono la " + request.getParameter("lComuni"));
-		as.inserisciAnnuncio(a);
+		else if(request.getParameter("descrizione").equals(null)) {
+			out.println("Inserisci una descrizione");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
+		}
+		else if(request.getParameter("tContratti").equals(null)) {
+			out.println("Specifica il tipo di contratto");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
+		}
+		else if(request.getParameter("tStudio").equals(null)) {
+			out.println("Specifica il titolo di studio");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
+		}
+		else if(request.getParameter("lComuni").equals(null)) {
+			out.println("il campo e' vuoto");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
+		}
+		else if(x==0) {
+			out.println("il campo e' vuoto");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
+		}
+		else if(daras.equals(null)) {
+			out.println("il campo e' vuoto");
+			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
+			rs.include(request, response);
+		} else {
+			
+			a.setId_societa_annuncio(1l);
+			
+			a.setNome_annuncio(request.getParameter("nAnnuncio"));
+			a.setDescrizione(request.getParameter("descrizione"));
+			a.setStipendio(x);
+			a.setTipo_contratto(request.getParameter("tContratti"));
+			a.setTitolo_di_studio(request.getParameter("tStudio"));
+			a.setData_pubblicazione(daras);
+			a.setComune(request.getParameter("lComuni"));
+			System.out.println("ciao sono la " + request.getParameter("lComuni"));
+			as.inserisciAnnuncio(a);
+		}
 		
 		
 	}

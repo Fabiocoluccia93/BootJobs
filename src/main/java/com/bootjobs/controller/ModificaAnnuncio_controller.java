@@ -42,11 +42,8 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String nomeAnnuncioE = request.getParameter("annuncioEsistente");
+		System.out.println("questo è il nome "+ nomeAnnuncioE);
 
-		// List<Annuncio> att = as.modificaAnnuncio(annuncioTesto, a);
-
-		String annuncioA = a.getNome_annuncio();
-		System.out.println("qua che nome ha" + annuncioA);
 		double x = Double.parseDouble(request.getParameter("stipendio"));
 		String data = request.getParameter("data");
 
@@ -72,6 +69,7 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			a.setStipendio(x);
 
 			as.modificaAnnuncio(nomeAnnuncioE, a);
+			System.out.println("qua che nome ha " + a.getNome_annuncio());
 			System.out.println("il nome corrisponde");
 
 		//} else {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1">
+
+<table border="1">
 		<thead>
 			<tr>
 				<th>Nome Annuncio</th>
@@ -20,19 +21,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.annunci}" var="annuncio">
+				<c:forEach items="${requestScope.annunci}" var="annuncio">
 				<tr>
-					<td>${annuncio.nome_annuncio}</td>
+					<td><a href="view/dettagliAnnuncio.jsp?nome_annuncio=${annuncio.nome_annuncio}">${annuncio.nome_annuncio}</a></td>
 					<td>${annuncio.descrizione}</td>
 					<td>${annuncio.titolo_di_studio}</td>
 					<td>${annuncio.tipo_contratto}</td>
 					<td>${annuncio.stipendio}</td>
-					<td>${annuncio.data_pubblicazione}</td>
-
-
+					<td>${annuncio.data_pubblicazione}</td> 	
 				</tr>
-			</c:forEach>
+				</c:forEach>
+
+
+
 		</tbody>
 	</table>
+
 </body>
 </html>

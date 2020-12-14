@@ -8,7 +8,7 @@ public interface Annuncio_utility {
 	
 	public boolean inserisciAnnuncio(Annuncio a_ins);
 
-	public Annuncio modificaAnnuncio(String a, Annuncio a_mod);
+	public boolean modificaAnnuncio(String a, Annuncio a_mod);
 
 	public boolean eliminaAnnuncio(int id, int id_soc);
 

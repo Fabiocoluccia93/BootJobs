@@ -15,6 +15,8 @@ import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
 import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
+import com.bootjobs.model.Tipologia;
+import com.bootjobs.model.Tipologia_service;
 
 /**
  * Servlet implementation class Territorio_controller
@@ -37,6 +39,8 @@ public class Territorio_controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Territorio_service ts = new Territorio_service();
+		Tipologia_service tips = new Tipologia_service();
+		Tipologia tip = new Tipologia();
 		Annuncio_Service as = new Annuncio_Service();
 		HttpSession session = request.getSession();
 
@@ -48,6 +52,13 @@ public class Territorio_controller extends HttpServlet {
 			tbregioni.add(t.getRegione());
 		}
 		
+		ArrayList<String> contratto = new ArrayList<String>();
+
+		List<Tipologia> tipo = tips.getTipologia();
+		for(int i = 0; i<tipo.size();i++) {
+			tip = tipo.get(i);
+			contratto.add(tip.getTipologia());
+		}
 //		List<Annuncio> contratto = as.getTipoContratto();
 //		ArrayList<String> tContratto = new ArrayList<String>();
 //		for (int i = 0; i < contratto.size(); i++) {
@@ -59,6 +70,7 @@ public class Territorio_controller extends HttpServlet {
 		
 		//session.setAttribute("listaContratti", tContratto);
 		session.setAttribute("listaRegioni", tbregioni);
+		session.setAttribute("listaContratti", contratto);
 
 		RequestDispatcher rs = request.getRequestDispatcher("/view/annuncio.jsp");
 		rs.forward(request, response);

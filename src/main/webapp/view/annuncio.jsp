@@ -64,26 +64,22 @@ function getComuni(){
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
 		Titolo di studio<input type='text' id='tStudio' name='tStudio' /><br>
-		Tipo contratto<input type='text' id='tContratto' name='tContratto' /><br>
-		<select name="tContratti">
+		Tipo contratto<select name="tContratti">
 			<c:forEach items="${sessionScope.listaContratti}" var="contratti">
-				<option  value="${contratti}">${contratti}</option>
+				<option value="${contratti}">${contratti}</option>
 			</c:forEach>
 		</select><br> 
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="tregione" id="regione" onchange="getProvince()">
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
-				<option id="dRegione"  value="${regioni}">${regioni}</option>
+				<option id="dRegione" value="${regioni}">${regioni}</option>
 			</c:forEach>
-		</select><br> 
-		
-		<select id="province" onchange="getComuni()">
+		</select><br> <select id="province" onchange="getComuni()">
 
-		</select> <br>
-		<select id="comuni" name="lComuni">
-			
-		</select>
+		</select> <br> <select id="comuni" name="lComuni">
+
+		</select><br>
 
 
 		<button type="submit" value="Invia">Invia</button>

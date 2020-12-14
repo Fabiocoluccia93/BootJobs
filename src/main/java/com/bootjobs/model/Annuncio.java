@@ -9,23 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "annuncio")
-@SecondaryTable(name="tipologia", pkJoinColumns = @PrimaryKeyJoinColumn(name="id_tipologia"))
 @NamedQueries({
 
-		//@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio = :name"),
-		@NamedQuery(name = "Annuncio.edit", query = "update Annuncio a set a.nome_annuncio = :nome" + " where a.nome_annuncio = :p"),
+		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio like '%:name%'"),
+		@NamedQuery(name = "Annuncioedit", query = "update Annuncio a set a.nome_annuncio = :nome where a.nome_annuncio = :p"),
 
 })
 
 public class Annuncio {
 
-//	private Long id_societa_annuncio;
 //	private Categoria categoria;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +43,7 @@ public class Annuncio {
 	Date data_pubblicazione;
 	@Column(name = "comune")
 	private String comune;
-	@Column(name="tipo_contratto", table="tipologia")
-	private String contratto;
+	
 
 	public Annuncio() {
 		super();
@@ -159,14 +154,6 @@ public class Annuncio {
 
 	public void setComune(String comune) {
 		this.comune = comune;
-	}
-
-	public String getContratto() {
-		return contratto;
-	}
-
-	public void setContratto(String contratto) {
-		this.contratto = contratto;
 	}
 
 }
