@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,10 +14,10 @@ import com.bootjobs.model.Provincia;
 import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
 
-
 /**
- * Servlet implementation class Province
+ * Servlet implementation class Province_controller
  */
+@WebServlet("/Province_controller")
 public class Province_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,7 +49,9 @@ public class Province_controller extends HttpServlet {
 		out.println("<option> Provincia </option>");
 		for(int i = 0; i<lp.size();i++) {
 			out.println("<option>" + lp.get(i).getNome_provincia() + "</option>");
-		}	}
+		}	
+	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,55 +18,43 @@ import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
 
 /**
- * Servlet implementation class ModificaAnnuncio_controller
+ * Servlet implementation class Annuncio_controller
  */
-public class ModificaAnnuncio_controller extends HttpServlet {
+@WebServlet("/Annuncio_controller")
+public class Annuncio_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Annuncio_controller() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ModificaAnnuncio_controller() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		Annuncio_Service as = new Annuncio_Service();
-		Annuncio a = new Annuncio();
 		PrintWriter out = response.getWriter();
+		Annuncio a = new Annuncio();
+		Annuncio_Service as = new Annuncio_Service();
+		HttpSession session = request.getSession();
 
-		String idAnnuncio = request.getParameter("id");
-		Integer id = Integer.parseInt(idAnnuncio);
-
-		System.out.println("*************************************");
-		System.out.println(request.getParameter("nAnnuncio"));
-		System.out.println(request.getParameter("descrizione"));
-		System.out.println(request.getParameter("tContratti"));
-		System.out.println(request.getParameter("tStudio"));
-		System.out.println(request.getParameter("lComuni"));
-		System.out.println(request.getParameter("stipendio"));
-		System.out.println(request.getParameter("data"));
-		System.out.println("*************************************");
-		
 		if (request.getParameter("nAnnuncio").equals("") || request.getParameter("descrizione").equals("")
-				|| request.getParameter("tContratti").equals("Tipo contratto")
-				|| request.getParameter("tStudio").equals("Titolo di studio")
-				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals(null)
+				|| request.getParameter("tContratti").equals("") || request.getParameter("tStudio").equals("")
+				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals("")
 				|| request.getParameter("data").equals(null)) {
 			out.println("Uno dei campi e' vuoto");
 
-			RequestDispatcher rd = request.getRequestDispatcher("view/modifica.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("view/annuncio.jsp");
 			rd.include(request, response);
 		} else {
-
+//		String idSocieta = session.getAttribute("");
+//		Integer id = Integer.parseInt(idSocieta);
+			double x = Double.parseDouble(request.getParameter("stipendio"));
 			String data = request.getParameter("data");
 
 			Date dataU = null;
@@ -79,41 +68,40 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			}
 
 			java.sql.Date daras = new java.sql.Date(dataU.getTime());
-			double x = Double.parseDouble(request.getParameter("stipendio"));
+//			set nome categoria
+//			a.setId(session.getAttribute("id"));
+			a.setId_societa_annuncio(2);
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
+			a.setStipendio(x);
 			a.setTipo_contratto(request.getParameter("tContratti"));
 			a.setTitolo_di_studio(request.getParameter("tStudio"));
-			a.setComune(request.getParameter("lComuni"));
 			a.setData_pubblicazione(daras);
-			a.setStipendio(x);
-
-			as.modificaAnnuncio(a, id);
+			a.setComune(request.getParameter("lComuni"));
+			System.out.println("ciao sono la " + request.getParameter("lComuni"));
+			as.inserisciAnnuncio(a);
 			
-			
+			int id = 2;
 			
 			List<Annuncio> listaAnnuncio = as.findById(id);
 			
 			for (int i = 0; i < listaAnnuncio.size(); i++) {
 				a = listaAnnuncio.get(i);
+				System.out.println(a.getNome_annuncio());
 			}
 			
 			
 			request.setAttribute("annunci", listaAnnuncio);
 
 			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
-
 			rd.include(request, response);
 		}
-
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
