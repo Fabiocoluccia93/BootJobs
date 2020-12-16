@@ -14,9 +14,20 @@
 <p align="right">
 <a  href="">iscrizione utente</a>
  | 
-<a  href="">per le società</a>
+<a  href="IndexController?param=1">per le società</a>
 </p>
 
+<% String eliminazione=(String)request.getAttribute("cancellazione");
+	String iscrizione=(String)request.getAttribute("iscrizioneOk");
+
+	if(eliminazione!=null){
+		out.println(eliminazione);
+	}
+	if(iscrizione!=null){
+		out.println(iscrizione);
+	}
+
+%>
 
 <fieldset style="background: white; border-color: red; padding-left: 200px; margin-left: 50px; margin-right: 50px;
 margin-top: 100px; ;">
