@@ -17,6 +17,8 @@ import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
 import com.bootjobs.model.Tipologia;
 import com.bootjobs.model.Tipologia_service;
+import com.bootjobs.model.TitoloStudio;
+import com.bootjobs.model.TitotloStudio_service;
 
 /**
  * Servlet implementation class Territorio_controller
@@ -40,10 +42,16 @@ public class Territorio_controller extends HttpServlet {
 			throws ServletException, IOException {
 		Territorio_service ts = new Territorio_service();
 		Tipologia_service tips = new Tipologia_service();
+		TitotloStudio_service titoS= new TitotloStudio_service();
 		Tipologia tip = new Tipologia();
-		Annuncio_Service as = new Annuncio_Service();
+		TitoloStudio titleS = new TitoloStudio();
 		HttpSession session = request.getSession();
 
+//		String idSocieta = session.getAttribute("");
+//		Integer id = Integer.parseInt(idSocieta);
+		
+		
+		
 		List<Territorio> regioni = ts.get_all_regioni();
 		ArrayList<String> tbregioni = new ArrayList<String>();
 		for (int i = 0; i < regioni.size(); i++) {
@@ -59,17 +67,17 @@ public class Territorio_controller extends HttpServlet {
 			tip = tipo.get(i);
 			contratto.add(tip.getTipologia());
 		}
-//		List<Annuncio> contratto = as.getTipoContratto();
-//		ArrayList<String> tContratto = new ArrayList<String>();
-//		for (int i = 0; i < contratto.size(); i++) {
-//			Annuncio a = contratto.get(i);
-//
-//			tContratto.add(a.getContratto());
-//			System.out.println(a.getContratto());
-//		}
 		
-		//session.setAttribute("listaContratti", tContratto);
-		session.setAttribute("listaRegioni", tbregioni);
+		ArrayList<String> titolo = new ArrayList<String>();
+
+		List<TitoloStudio> tit = titoS.getTitoloS();
+		for(int i = 0; i<tit.size();i++) {
+			titleS = tit.get(i);
+			titolo.add(titleS.getTds());
+		}
+
+		request.setAttribute("listaRegioni", tbregioni);
+		request.setAttribute("listaTitolo", titolo);
 		session.setAttribute("listaContratti", contratto);
 
 		RequestDispatcher rs = request.getRequestDispatcher("/view/annuncio.jsp");
@@ -83,6 +91,7 @@ public class Territorio_controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 	}
 
 }

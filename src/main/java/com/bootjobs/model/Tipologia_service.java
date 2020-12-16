@@ -16,4 +16,10 @@ public class Tipologia_service implements Tipologia_utility {
 		
 	}
 
+	@Override
+	public List<Tipologia> getTitoloS() {
+		List<Tipologia> listTit = em.createQuery("Select a From Tipologia a", Tipologia.class).getResultList();
+		return listTit;
+	}
+
 }

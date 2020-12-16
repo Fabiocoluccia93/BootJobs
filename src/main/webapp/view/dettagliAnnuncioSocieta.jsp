@@ -9,7 +9,10 @@
 
 </head>
 <body style="background: green;">
-<input type="hidden" value="<%= request.getParameter("id") %>" name="idAnnuncio">
+<form action="../Territorio1_cotroller" method="get">
+<input type="hidden" value="<%= request.getParameter("id") %>" name="id_Annuncio" >
+
+
 <table border="1" class="table">
 		<thead>
 			<tr>
@@ -32,11 +35,15 @@
 					<td><%= request.getParameter("stipendio") %></td>
 					<td><%= request.getParameter("data") %></td>
 					<td><%= request.getParameter("comune") %></td>
-					<td><button type="submit" class="btn btn-dark">Candidati</button>
-				</tr>
+ 					<td><button type="submit" class="btn btn-dark">modifica</button>
+<%-- 					<td><a href="modifica.jsp?nome_annuncio=<%= request.getParameter("nome_annuncio") %>&id=<%= request.getParameter("id") %>" style="color: red;">modifica</a></td>
+
+ --%>				
+ 					</tr>
 
 		</tbody>
 	</table>
+</form>
 
 </body>
 </html>

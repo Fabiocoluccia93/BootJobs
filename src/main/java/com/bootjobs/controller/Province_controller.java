@@ -47,7 +47,7 @@ public class Province_controller extends HttpServlet {
 		System.out.println("ti prego " + codIstat);
 		
 		List<Provincia> lp = ts.get_all_province(codIstat);
-		
+		out.println("<option> Provincia </option>");
 		for(int i = 0; i<lp.size();i++) {
 			out.println("<option>" + lp.get(i).getNome_provincia() + "</option>");
 		}	}

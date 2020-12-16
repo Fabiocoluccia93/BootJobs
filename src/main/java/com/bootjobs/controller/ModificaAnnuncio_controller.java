@@ -41,9 +41,8 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 		Annuncio a = new Annuncio();
 		PrintWriter out = response.getWriter();
 
-		String nomeAnnuncioE = request.getParameter("annuncioEsistente");
-		System.out.println("questo è il nome "+ nomeAnnuncioE);
-
+		String idAnnuncio = request.getParameter("id");
+		Integer id = Integer.parseInt(idAnnuncio);
 		double x = Double.parseDouble(request.getParameter("stipendio"));
 		String data = request.getParameter("data");
 
@@ -62,21 +61,19 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 		//if (nomeAnnuncioE.equals(annuncioA)) {
 
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
-			a.setTipo_contratto(request.getParameter("tContratto"));
 			a.setDescrizione(request.getParameter("descrizione"));
+			a.setTipo_contratto(request.getParameter("tContratti"));
 			a.setTitolo_di_studio(request.getParameter("tStudio"));
+			a.setComune(request.getParameter("lComuni"));
 			a.setData_pubblicazione(daras);
 			a.setStipendio(x);
 
-			as.modificaAnnuncio(nomeAnnuncioE, a);
-			System.out.println("qua che nome ha " + a.getNome_annuncio());
-			System.out.println("il nome corrisponde");
+			as.modificaAnnuncio(a , id);
 
 		//} else {
-			out.println("non corrisponde");
 		//}
 //			request.setAttribute("listaRegioni", tbregioni);
-		s.setAttribute("nomeAnnuncio", nomeAnnuncioE);
+
 
 
 		RequestDispatcher rd = request.getRequestDispatcher("");

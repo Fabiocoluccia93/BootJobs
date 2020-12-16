@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface Annuncio_utility {
 
-	public Annuncio findById(Long id);
+	public List<Annuncio> findById(int id);
 	
 	public boolean inserisciAnnuncio(Annuncio a_ins);
 
-	public boolean modificaAnnuncio(String a, Annuncio a_mod);
+	public boolean modificaAnnuncio(Annuncio a_mod , int id);
 
 	public boolean eliminaAnnuncio(int id, int id_soc);
 

@@ -37,15 +37,18 @@ public class Annuncio_controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
+
 		PrintWriter out = response.getWriter();
 		Annuncio a = new Annuncio();
 		Annuncio_Service as = new Annuncio_Service();
 		HttpSession session = request.getSession();
+
+//		String idSocieta = session.getAttribute("");
+//		Integer id = Integer.parseInt(idSocieta);
 		
 		double x = Double.parseDouble(request.getParameter("stipendio"));
 		String data = request.getParameter("data");
-		
+
 		Date dataU = null;
 		try {
 			dataU = new Date();
@@ -55,56 +58,16 @@ public class Annuncio_controller extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//if(new SimpleDateFormat("yyyy-MM-dd").parse(data).before(new Date())) {
-			//System.out.println("la data e' sbagliata");
-		//} else {
-	
-			java.sql.Date daras = new java.sql.Date(dataU.getTime());
+
+		java.sql.Date daras = new java.sql.Date(dataU.getTime());
+
+		if(request.getParameter("nAnnuncio").equals("")) {
+			out.println("campo vuoto");
+			RequestDispatcher rd = request.getRequestDispatcher("Territorio_controller");
+			rd.forward(request, response);
+		} else {
 			
-		//}
-		
-//		Long l = Long.parseLong(session.getAttribute("idSocieta"));
-//		a.setId_societa_annuncio(session.getAttribute(//session id societa));
-		if(request.getParameter("nAnnuncio").equals(null)) {
-			out.println("Inserisci un nome per l'evento");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		}
-		else if(request.getParameter("descrizione").equals(null)) {
-			out.println("Inserisci una descrizione");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		}
-		else if(request.getParameter("tContratti").equals(null)) {
-			out.println("Specifica il tipo di contratto");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		}
-		else if(request.getParameter("tStudio").equals(null)) {
-			out.println("Specifica il titolo di studio");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		}
-		else if(request.getParameter("lComuni").equals(null)) {
-			out.println("il campo e' vuoto");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		}
-		else if(x==0) {
-			out.println("il campo e' vuoto");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		}
-		else if(daras.equals(null)) {
-			out.println("il campo e' vuoto");
-			RequestDispatcher rs = request.getRequestDispatcher("/views/Annuncio_controller.jsp");
-			rs.include(request, response);
-		} 
-			
-			
-			a.setId_societa_annuncio(1l);
-			
+			a.setId_societa_annuncio(1);
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
 			a.setStipendio(x);
@@ -114,9 +77,13 @@ public class Annuncio_controller extends HttpServlet {
 			a.setComune(request.getParameter("lComuni"));
 			System.out.println("ciao sono la " + request.getParameter("lComuni"));
 			as.inserisciAnnuncio(a);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("view/HomeSoc");
+			rd.include(request, response);
 		}
-		
-		
+	}
+	
+
 	
 
 	/**

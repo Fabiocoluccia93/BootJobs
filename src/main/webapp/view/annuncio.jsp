@@ -53,33 +53,72 @@ function getComuni(){
 	ajax.send();
 }
 
+function getSottocategoria(){
+
+	var ajax = new XMLHttpRequest();
+	var cat = document.getElementById('idCategoria').value;
+	
+	ajax.open('GET', 'Categoria_controller?cat='+ cat, true);
+	
+	ajax.onload = function() {
+		
+	if(this.status == 200) {
+		
+
+	document.getElementById('idSoCategoria').innerHTML = this.responseText;
+			
+		} else if (this.status == 400) {
+			
+			document.getElementeById('idSoCategoria').innerHTML = "risorsa non trovata!";
+		}
+	}
+	
+	ajax.send();
+}
+
+
 
 
 </script>
 </head>
-<body>
+<body style="background: green;">
 
 	<form action="Annuncio_controller" method="get">
-
+		
+		
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
-		Titolo di studio<input type='text' id='tStudio' name='tStudio' /><br>
-		Tipo contratto<select name="tContratti">
+		<select name="tStudio">
+		<option>Titolo di studio</option>
+			<c:forEach items="${requestScope.listaTitolo}" var="titolo">
+				<option value="${titolo}">${titolo}</option>
+			</c:forEach>
+		</select><br>
+		<select name="tContratti">
+		<option>Tipo contratto</option>
 			<c:forEach items="${sessionScope.listaContratti}" var="contratti">
 				<option value="${contratti}">${contratti}</option>
 			</c:forEach>
 		</select><br> 
+	<%-- <select name="categoria" id="idCategoria" onchange="getSottocategoria()">
+		<option>Categoria</option>
+			<c:forEach items="${sessionScope.}" var="cat">
+				<option id="dRegione" value="${cat}">${cat}</option>
+			</c:forEach>
+		</select><br> --%>
+	<%--<select name="sottoCategoria" id="idSoCategoria">
+		<option>Sottocategoria</option>
+			
+		</select><br> --%>
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="tregione" id="regione" onchange="getProvince()">
-		
-			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
+		<option>Regione</option>
+			<c:forEach items="${requestScope.listaRegioni}" var="regioni">
 				<option id="dRegione" value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br> <select id="province" onchange="getComuni()">
-
 		</select> <br> <select id="comuni" name="lComuni">
-
 		</select><br>
 
 
@@ -87,6 +126,5 @@ function getComuni(){
 
 	</form>
 
-	<a href="Territorio1_cotroller">Modifica evento</a>
 </body>
 </html>

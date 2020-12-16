@@ -25,7 +25,7 @@
 			<c:forEach items="${requestScope.annunci}" var="annuncio">
 				<tr>
 					<td scope="row" ><a style="color: red;"
-						href="view/dettagliAnnuncio.jsp?nome_annuncio=${annuncio.nome_annuncio}
+						href="view/dettagliAnnuncioSocieta.jsp?nome_annuncio=${annuncio.nome_annuncio}
 						&descrizione=${annuncio.descrizione}
 						&comune=${annuncio.comune}
 						&id=${annuncio.id}

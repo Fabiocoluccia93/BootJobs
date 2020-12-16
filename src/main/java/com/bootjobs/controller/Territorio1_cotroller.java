@@ -16,6 +16,8 @@ import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
 import com.bootjobs.model.Tipologia;
 import com.bootjobs.model.Tipologia_service;
+import com.bootjobs.model.TitoloStudio;
+import com.bootjobs.model.TitotloStudio_service;
 
 /**
  * Servlet implementation class Territorio1_cotroller
@@ -35,7 +37,13 @@ public class Territorio1_cotroller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Territorio_service ts = new Territorio_service();		
+		Territorio_service ts = new Territorio_service();	
+		Tipologia_service tips = new Tipologia_service();
+		TitotloStudio_service titoS= new TitotloStudio_service();
+		Tipologia tip = new Tipologia();
+		TitoloStudio titleS = new TitoloStudio();
+		
+		String id_Annuncio = request.getParameter("id_Annuncio");
 
 		List<Territorio> regioni = ts.get_all_regioni();
 		ArrayList<String> tbregioni = new ArrayList<String>();
@@ -44,10 +52,31 @@ public class Territorio1_cotroller extends HttpServlet {
 
 			tbregioni.add(t.getRegione());
 		}
+		
+		ArrayList<String> contratto = new ArrayList<String>();
+
+		List<Tipologia> tipo = tips.getTipologia();
+		for(int i = 0; i<tipo.size();i++) {
+			tip = tipo.get(i);
+			contratto.add(tip.getTipologia());
+		}
+		
+		ArrayList<String> titolo = new ArrayList<String>();
+
+		List<TitoloStudio> tit = titoS.getTitoloS();
+		for(int i = 0; i<tit.size();i++) {
+			titleS = tit.get(i);
+			titolo.add(titleS.getTds());
+		}
 
 		request.setAttribute("listaRegioni1", tbregioni);
+		request.setAttribute("listaContratti", contratto);
+		request.setAttribute("listaTitolo", titolo);
+		request.setAttribute("idAnnuncio", id_Annuncio);
+		
 
-		RequestDispatcher rs = request.getRequestDispatcher("/view/modifica.jsp");
+		RequestDispatcher rs = request.getRequestDispatcher("view/modifica.jsp?idAnnuncio="+id_Annuncio);
+		
 		rs.forward(request, response);
 	}
 

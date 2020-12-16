@@ -5,19 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tipologia")
+@SecondaryTable(name="titolo_di_studio", pkJoinColumns=@PrimaryKeyJoinColumn(name="id_titolo_di_studio"))
 public class Tipologia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_tipologioa")
+	@Column(name = "id_tipologia")
 	private int id_tipologia;
 
-	@Column(name = "tipologia")
+	@Column(name = "tipo_contratto")
 	private String tipologia;
+	
+	@Column(name="titolo_di_studio", table="titolo_di_studio")
+	private String tds;
 
 	public Tipologia() {
 		super();
@@ -44,6 +50,14 @@ public class Tipologia {
 
 	public void setTipologia(String tipologia) {
 		this.tipologia = tipologia;
+	}
+
+	public String getTds() {
+		return tds;
+	}
+
+	public void setTds(String tds) {
+		this.tds = tds;
 	}
 
 }

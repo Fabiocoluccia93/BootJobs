@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
@@ -31,22 +32,7 @@ public class Ricerca_controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Annuncio_Service as = new Annuncio_Service();
-		Annuncio a = new Annuncio();
-		String nAnnuncio = request.getParameter("nomeAnnuncio");
-		System.out.println(nAnnuncio);
 		
-		List<Annuncio> listaAnnuncio = as.ricercanome_annuncio(nAnnuncio);
-		
-		for (int i = 0; i < listaAnnuncio.size(); i++) {
-			a = listaAnnuncio.get(i);
-			System.out.println(a.getNome_annuncio());
-		}
-		
-		request.setAttribute("annunci", listaAnnuncio);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncio.jsp");
-		rd.include(request, response);
 	}
 
 	/**
@@ -54,7 +40,53 @@ public class Ricerca_controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		Annuncio_Service as = new Annuncio_Service();
+		Annuncio a = new Annuncio();
+		HttpSession session = request.getSession();
+		
+		
+		String param = request.getParameter("param");
+		Integer intParam = Integer.parseInt(param);
+		
+		
+		if(intParam == 1) {
+			
+			String nAnnuncio = request.getParameter("nomeAnnuncio");
+			System.out.println(nAnnuncio);
+			
+			List<Annuncio> listaAnnuncio = as.ricercanome_annuncio(nAnnuncio);
+			
+			for (int i = 0; i < listaAnnuncio.size(); i++) {
+				a = listaAnnuncio.get(i);
+				System.out.println(a.getNome_annuncio());
+			}
+			
+			request.setAttribute("annunci", listaAnnuncio);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncio.jsp");
+			rd.include(request, response);
+		}
+		if(intParam == 2) {
+			
+//			String idSocieta = session.getAttribute("");
+//			Integer id = Integer.parseInt(idSocieta);
+			
+			int id = 1;
+			String nAnnuncio = request.getParameter("nomeAnnuncio");
+			System.out.println(nAnnuncio);
+			
+			List<Annuncio> listaAnnuncio = as.findById(id);
+			
+			for (int i = 0; i < listaAnnuncio.size(); i++) {
+				a = listaAnnuncio.get(i);
+				System.out.println(a.getNome_annuncio());
+			}
+			
+			request.setAttribute("annunci", listaAnnuncio);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
+			rd.include(request, response);
+		}
 	}
 
 }

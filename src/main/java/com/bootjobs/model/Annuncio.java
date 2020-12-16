@@ -16,7 +16,8 @@ import javax.persistence.Table;
 @NamedQueries({
 
 		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio like :name"),
-		@NamedQuery(name = "Annuncioedit", query = "update Annuncio a set a.nome_annuncio = :nome where a.nome_annuncio = :p"),
+		@NamedQuery(name = "searchById", query = "select a from Annuncio a where a.id_societa_annuncio=:p"),
+		@NamedQuery(name = "Annuncioedit", query = "update Annuncio a set a.nome_annuncio = :nome , a.descrizione =:desc, a.stipendio = :sti, a.titolo_di_studio = :tito, a.tipo_contratto = :contract, a.comune = :com, a.data_pubblicazione = :date where a.id = :b"),
 
 })
 
@@ -26,9 +27,9 @@ public class Annuncio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_annuncio")
-	private Long id;
+	private int id;
 	@Column(name = "id_societa_annuncio")
-	private Long id_societa_annuncio;
+	private int id_societa_annuncio;
 	@Column(name = "nome_annuncio")
 	private String nome_annuncio;
 	@Column(name = "titolo_di_studio")
@@ -43,7 +44,6 @@ public class Annuncio {
 	Date data_pubblicazione;
 	@Column(name = "comune")
 	private String comune;
-	
 
 	public Annuncio() {
 		super();
@@ -51,13 +51,12 @@ public class Annuncio {
 	}
 
 	public Annuncio(
-//			Territorio territorio, 
+
 //			Categoria categoria, 
 			String nome_annuncio, String titolo_di_studio, String tipo_contratto, String descrizione, Double stipendio,
-			Long id_societa_annuncio, Date data_pubblicazione) {
+			int id_societa_annuncio, Date data_pubblicazione) {
 		super();
 
-//		this.territorio = territorio;
 //		this.categoria = categoria;
 		this.id_societa_annuncio = id_societa_annuncio;
 		this.nome_annuncio = nome_annuncio;
@@ -68,11 +67,11 @@ public class Annuncio {
 		this.data_pubblicazione = data_pubblicazione;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -108,14 +107,6 @@ public class Annuncio {
 		this.descrizione = descrizione;
 	}
 
-//	public Territorio getTerritorio() {
-//		return territorio;
-//	}
-//
-//	public void setTerritorio(Territorio territorio) {
-//		this.territorio = territorio;
-//	}
-
 //	public Categoria getCategoria() {
 //		return categoria;
 //	}
@@ -140,11 +131,11 @@ public class Annuncio {
 		this.data_pubblicazione = data_pubblicazione;
 	}
 
-	public Long getId_societa_annuncio() {
+	public int getId_societa_annuncio() {
 		return id_societa_annuncio;
 	}
 
-	public void setId_societa_annuncio(Long id_societa_annuncio) {
+	public void setId_societa_annuncio(int id_societa_annuncio) {
 		this.id_societa_annuncio = id_societa_annuncio;
 	}
 

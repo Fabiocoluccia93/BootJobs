@@ -12,10 +12,16 @@ public class Annuncio_Service implements Annuncio_utility {
 	EntityManager em = Dao.newInstance().createEntityManager();
 	EntityTransaction entr = em.getTransaction();
 
-	public Annuncio findById(Long id) {
-		Annuncio a = new Annuncio();
-		em.getTransaction().begin();
-		a = em.find(Annuncio.class, id);
+	@SuppressWarnings("unchecked")
+	public List<Annuncio> findById(int id) {
+		List<Annuncio> a = new ArrayList<Annuncio>();
+		Query q = em.createNamedQuery("searchById").setParameter("p", id);
+		
+		entr.begin();
+		a= q.getResultList();
+		entr.commit();
+		em.close();
+		
 		return a;
 	}
 
@@ -33,14 +39,19 @@ public class Annuncio_Service implements Annuncio_utility {
 		return true;
 	}
 
-	public boolean modificaAnnuncio(String nomeAnnuncio, Annuncio a_mod) {
+	public boolean modificaAnnuncio(Annuncio a_mod, int id) {
 
 		boolean bo = false;
 		entr.begin();
 		Query query = em.createNamedQuery("Annuncioedit");
-		query.setParameter("nome", a_mod.getNome_annuncio());
-		System.out.println(a_mod.getNome_annuncio());
-		query.setParameter("p", nomeAnnuncio);
+		query.setParameter("nome", a_mod.getNome_annuncio())
+		.setParameter("desc", a_mod.getDescrizione())
+		.setParameter("sti", a_mod.getStipendio())
+		.setParameter("tito", a_mod.getTitolo_di_studio())
+		.setParameter("contract", a_mod.getTipo_contratto())
+		.setParameter("com", a_mod.getComune())
+		.setParameter("date", a_mod.getData_pubblicazione())
+		.setParameter("b", id);
 		int check = query.executeUpdate();
 		entr.commit();
 		em.close();

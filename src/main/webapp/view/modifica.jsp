@@ -60,28 +60,33 @@ function getComuni(){
 
 </script>
 </head>
-<body>
+<body style="background: green;">
 	<form action="ModificaAnnuncio_controller" method="get">
 	
-		Nome evento da modificare<input type='text' id='annuncioEsitente' name='annuncioEsistente' /><br>
+		<input type="hidden" value="<%= request.getParameter("idAnnuncio") %>" name="id">
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
-		Titolo di studio<input type='text' id='tStudio' name='tStudio' /><br>
-		Tipo contratto<select name="tContratti">
-			<c:forEach items="${sessionScope.listaContratti}" var="contratti">
+		<select name="tStudio">
+		<option>Titolo di studio</option>
+			<c:forEach items="${requestScope.listaTitolo}" var="titolo">
+				<option value="${titolo}">${titolo}</option>
+			</c:forEach>
+		</select><br>
+		<select name="tContratti">
+		<option>Tipo contratto </option>
+			<c:forEach items="${requestScope.listaContratti}" var="contratti">
 				<option value="${contratti}">${contratti}</option>
 			</c:forEach>
 		</select><br> 
 		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="tregione" id="regione" onchange="getProvince()">
+		<option>Regioni </option>
 			<c:forEach items="${requestScope.listaRegioni1}" var="regioni">
 				<option id="dRegione" value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br> <select id="province" onchange="getComuni()">
-
 		</select> <br> <select id="comuni" name="lComuni">
-
 		</select><br>
 
 
