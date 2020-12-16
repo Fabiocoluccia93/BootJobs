@@ -19,11 +19,22 @@ public class Territorio {
 
 	@Column(name="nome_regione")
 	private String regione;
+<<<<<<< HEAD
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="codiceistat_regione")
 	private int id;
+=======
+//	private String provincia;
+//	private String comune;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="codiceistat_regione")
+	private int id;
+//	regione, provinica, 
+>>>>>>> branch 'Alessio_F_T' of https://github.com/Fabiocoluccia93/BootJobs.git
 
 	public Territorio() {
 		super();
@@ -31,14 +42,24 @@ public class Territorio {
 	}
 
 	public Territorio(
+<<<<<<< HEAD
 
+=======
+			//String comune
+//			, String provinica, 
+>>>>>>> branch 'Alessio_F_T' of https://github.com/Fabiocoluccia93/BootJobs.git
 			int id,
 			String regione
 			) {
 		super();
 		this.id = id;
 		this.regione = regione;
+<<<<<<< HEAD
 
+=======
+//		this.provinica = provinica;
+//		this.comune = comune;
+>>>>>>> branch 'Alessio_F_T' of https://github.com/Fabiocoluccia93/BootJobs.git
 	}
 
 	public String getRegione() {
@@ -47,6 +68,7 @@ public class Territorio {
 
 	public void setRegione(String regione) {
 		this.regione = regione;
+<<<<<<< HEAD
 	}
 
 
@@ -56,6 +78,32 @@ public class Territorio {
 
 	public void setId(int id) {
 		this.id = id;
+=======
+>>>>>>> branch 'Alessio_F_T' of https://github.com/Fabiocoluccia93/BootJobs.git
 	}
+//
+//	public String getProvinica() {
+//		return provinica;
+//	}
+//
+//	public void setProvinica(String provinica) {
+//		this.provinica = provinica;
+//	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+//	public String getComune() {
+//		return comune;
+//	}
+//
+//	public void setComune(String comune) {
+//		this.comune = comune;
+//	}
 
 }
