@@ -96,7 +96,6 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			
 			for (int i = 0; i < listaAnnuncio.size(); i++) {
 				a = listaAnnuncio.get(i);
-				System.out.println(a.getNome_annuncio());
 			}
 			
 			

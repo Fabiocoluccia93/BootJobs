@@ -38,13 +38,11 @@ public class Province_controller extends HttpServlet {
 		Territorio t = new Territorio();
 		Territorio_service ts = new Territorio_service();
 		String regione = request.getParameter("regioni");
-		System.out.println("Regioni di modifica.jsp " + regione);
 		
 		
 		List<Territorio> infRegione = ts.getOne(regione);
 		t = infRegione.get(0);
 		int codIstat = t.getId();
-		System.out.println("ti prego " + codIstat);
 		
 		List<Provincia> lp = ts.get_all_province(codIstat);
 		out.println("<option> Provincia </option>");

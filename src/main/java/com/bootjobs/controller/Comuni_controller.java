@@ -44,7 +44,6 @@ public class Comuni_controller extends HttpServlet {
 		Territorio_service ts = new Territorio_service();
 		Provincia pro = new Provincia();
 		String province = request.getParameter("province");
-		System.out.println("ti prego " + province);
 
 		List<Provincia> siglaPro =ts.getSiglaPro(province);
 		pro = siglaPro.get(0);
