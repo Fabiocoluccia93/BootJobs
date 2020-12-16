@@ -33,10 +33,10 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
-		HttpSession s = request.getSession();
+
 		Annuncio_Service as = new Annuncio_Service();
 		Annuncio a = new Annuncio();
 		PrintWriter out = response.getWriter();
@@ -58,7 +58,17 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 
 		java.sql.Date daras = new java.sql.Date(dataU.getTime());
 
-		//if (nomeAnnuncioE.equals(annuncioA)) {
+		// if (nomeAnnuncioE.equals(annuncioA)) {
+
+		if (request.getParameter("nAnnuncio").equals("") || request.getParameter("descrizione").equals("")
+				|| request.getParameter("tContratti").equals("") || request.getParameter("tStudio").equals("")
+				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals("")
+				|| request.getParameter("data").equals(null)) {
+			out.println("Uno dei campi e' vuoto");
+
+			RequestDispatcher rd = request.getRequestDispatcher("view/annuncio.jsp");
+			rd.include(request, response);
+		} else {
 
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
@@ -68,13 +78,8 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			a.setData_pubblicazione(daras);
 			a.setStipendio(x);
 
-			as.modificaAnnuncio(a , id);
-
-		//} else {
-		//}
-//			request.setAttribute("listaRegioni", tbregioni);
-
-
+			as.modificaAnnuncio(a, id);
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.include(request, response);

@@ -45,7 +45,7 @@ public class Annuncio_controller extends HttpServlet {
 
 //		String idSocieta = session.getAttribute("");
 //		Integer id = Integer.parseInt(idSocieta);
-		
+
 		double x = Double.parseDouble(request.getParameter("stipendio"));
 		String data = request.getParameter("data");
 
@@ -61,12 +61,16 @@ public class Annuncio_controller extends HttpServlet {
 
 		java.sql.Date daras = new java.sql.Date(dataU.getTime());
 
-		if(request.getParameter("nAnnuncio").equals("")) {
-			out.println("campo vuoto");
-			RequestDispatcher rd = request.getRequestDispatcher("Territorio_controller");
-			rd.forward(request, response);
-		} else {
+		if (request.getParameter("nAnnuncio").equals("") || request.getParameter("descrizione").equals("")
+				|| request.getParameter("tContratti").equals("") || request.getParameter("tStudio").equals("")
+				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals("")
+				|| request.getParameter("data").equals(null)) {
+			out.println("Uno dei campi e' vuoto");
 			
+			RequestDispatcher rd = request.getRequestDispatcher("view/annuncio.jsp");
+			rd.include(request, response);
+		} else {
+
 			a.setId_societa_annuncio(1);
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
@@ -77,14 +81,11 @@ public class Annuncio_controller extends HttpServlet {
 			a.setComune(request.getParameter("lComuni"));
 			System.out.println("ciao sono la " + request.getParameter("lComuni"));
 			as.inserisciAnnuncio(a);
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("view/HomeSoc");
 			rd.include(request, response);
 		}
 	}
-	
-
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

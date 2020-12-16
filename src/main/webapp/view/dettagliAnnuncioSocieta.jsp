@@ -20,6 +20,8 @@
 				<th scope="col">Descrizione</th>
 				<th scope="col">Titolo di Studio</th>
 				<th scope="col">Tipo_contratto</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Sottocategoria</th>
 				<th scope="col">Stipendio</th>
 				<th scope="col">Data pubblicazione</th>
 				<th scope="col">Comune</th>
@@ -32,6 +34,8 @@
 					<td><%= request.getParameter("descrizione") %></td>
 					<td><%= request.getParameter("titolo") %></td>
 					<td><%= request.getParameter("tipo") %></td>
+					<td></td>
+					<td></td>
 					<td><%= request.getParameter("stipendio") %></td>
 					<td><%= request.getParameter("data") %></td>
 					<td><%= request.getParameter("comune") %></td>

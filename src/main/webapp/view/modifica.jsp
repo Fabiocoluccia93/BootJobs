@@ -68,13 +68,13 @@ function getComuni(){
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
 		<select name="tStudio">
 		<option>Titolo di studio</option>
-			<c:forEach items="${requestScope.listaTitolo}" var="titolo">
+			<c:forEach items="${sessionScope.listaTitolo}" var="titolo">
 				<option value="${titolo}">${titolo}</option>
 			</c:forEach>
 		</select><br>
 		<select name="tContratti">
 		<option>Tipo contratto </option>
-			<c:forEach items="${requestScope.listaContratti}" var="contratti">
+			<c:forEach items="${sessionScope.listaContratti}" var="contratti">
 				<option value="${contratti}">${contratti}</option>
 			</c:forEach>
 		</select><br> 
@@ -82,7 +82,7 @@ function getComuni(){
 		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
 		<select name="tregione" id="regione" onchange="getProvince()">
 		<option>Regioni </option>
-			<c:forEach items="${requestScope.listaRegioni1}" var="regioni">
+			<c:forEach items="${sessionScope.listaRegioni1}" var="regioni">
 				<option id="dRegione" value="${regioni}">${regioni}</option>
 			</c:forEach>
 		</select><br> <select id="province" onchange="getComuni()">

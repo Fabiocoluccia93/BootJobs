@@ -1,6 +1,7 @@
 package com.bootjobs.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -40,6 +41,9 @@ public class Ricerca_controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
 		Annuncio_Service as = new Annuncio_Service();
 		Annuncio a = new Annuncio();
 		HttpSession session = request.getSession();
@@ -54,17 +58,25 @@ public class Ricerca_controller extends HttpServlet {
 			String nAnnuncio = request.getParameter("nomeAnnuncio");
 			System.out.println(nAnnuncio);
 			
-			List<Annuncio> listaAnnuncio = as.ricercanome_annuncio(nAnnuncio);
-			
-			for (int i = 0; i < listaAnnuncio.size(); i++) {
-				a = listaAnnuncio.get(i);
-				System.out.println(a.getNome_annuncio());
+			if(nAnnuncio.equals(null)) {
+				
+				out.println("Inserisci un parola chiave");
+				RequestDispatcher rd = request.getRequestDispatcher("/view/index.jsp");
+				rd.include(request, response);
+			} else {
+				
+				List<Annuncio> listaAnnuncio = as.ricercanome_annuncio(nAnnuncio);
+				
+				for (int i = 0; i < listaAnnuncio.size(); i++) {
+					a = listaAnnuncio.get(i);
+					System.out.println(a.getNome_annuncio());
+				}
+				
+				request.setAttribute("annunci", listaAnnuncio);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncio.jsp");
+				rd.include(request, response);
 			}
-			
-			request.setAttribute("annunci", listaAnnuncio);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncio.jsp");
-			rd.include(request, response);
 		}
 		if(intParam == 2) {
 			

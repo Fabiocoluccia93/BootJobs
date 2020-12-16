@@ -76,8 +76,8 @@ public class Territorio_controller extends HttpServlet {
 			titolo.add(titleS.getTds());
 		}
 
-		request.setAttribute("listaRegioni", tbregioni);
-		request.setAttribute("listaTitolo", titolo);
+		session.setAttribute("listaRegioni", tbregioni);
+		session.setAttribute("listaTitolo", titolo);
 		session.setAttribute("listaContratti", contratto);
 
 		RequestDispatcher rs = request.getRequestDispatcher("/view/annuncio.jsp");

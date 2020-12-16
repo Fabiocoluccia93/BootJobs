@@ -42,6 +42,7 @@ public class Territorio1_cotroller extends HttpServlet {
 		TitotloStudio_service titoS= new TitotloStudio_service();
 		Tipologia tip = new Tipologia();
 		TitoloStudio titleS = new TitoloStudio();
+		HttpSession session = request.getSession();
 		
 		String id_Annuncio = request.getParameter("id_Annuncio");
 
@@ -69,10 +70,10 @@ public class Territorio1_cotroller extends HttpServlet {
 			titolo.add(titleS.getTds());
 		}
 
-		request.setAttribute("listaRegioni1", tbregioni);
-		request.setAttribute("listaContratti", contratto);
-		request.setAttribute("listaTitolo", titolo);
-		request.setAttribute("idAnnuncio", id_Annuncio);
+		session.setAttribute("listaRegioni1", tbregioni);
+		session.setAttribute("listaContratti", contratto);
+		session.setAttribute("listaTitolo", titolo);
+		session.setAttribute("idAnnuncio", id_Annuncio);
 		
 
 		RequestDispatcher rs = request.getRequestDispatcher("view/modifica.jsp?idAnnuncio="+id_Annuncio);
