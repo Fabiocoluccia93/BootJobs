@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form action="../Ricerca_controller" method="post">
+	<input type="hidden" name="param" value="2">
+<!-- 	<input type="hidden" name="nomeAnnuncio" id="nomeAnnuncio">
+ -->	<button type="submit">Cerca</button>
+	
+	</form>
 </body>
 </html>

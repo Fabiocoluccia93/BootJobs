@@ -17,16 +17,15 @@ import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
 
 /**
- * Servlet implementation class Annuncio_controller
+ * Servlet implementation class ModificaAnnuncio_controller
  */
-//@WebServlet("/Annuncio_controller")
-public class Annuncio_controller extends HttpServlet {
+public class ModificaAnnuncio_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Annuncio_controller() {
+	public ModificaAnnuncio_controller() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,23 +38,34 @@ public class Annuncio_controller extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		PrintWriter out = response.getWriter();
-		Annuncio a = new Annuncio();
 		Annuncio_Service as = new Annuncio_Service();
-		HttpSession session = request.getSession();
+		Annuncio a = new Annuncio();
+		PrintWriter out = response.getWriter();
 
+		String idAnnuncio = request.getParameter("id");
+		Integer id = Integer.parseInt(idAnnuncio);
+
+		System.out.println("*************************************");
+		System.out.println(request.getParameter("nAnnuncio"));
+		System.out.println(request.getParameter("descrizione"));
+		System.out.println(request.getParameter("tContratti"));
+		System.out.println(request.getParameter("tStudio"));
+		System.out.println(request.getParameter("lComuni"));
+		System.out.println(request.getParameter("stipendio"));
+		System.out.println(request.getParameter("data"));
+		System.out.println("*************************************");
+		
 		if (request.getParameter("nAnnuncio").equals("") || request.getParameter("descrizione").equals("")
-				|| request.getParameter("tContratti").equals("") || request.getParameter("tStudio").equals("")
-				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals("")
+				|| request.getParameter("tContratti").equals("Tipo contratto")
+				|| request.getParameter("tStudio").equals("Titolo di studio")
+				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals(null)
 				|| request.getParameter("data").equals(null)) {
 			out.println("Uno dei campi e' vuoto");
 
-			RequestDispatcher rd = request.getRequestDispatcher("view/annuncio.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("view/modifica.jsp");
 			rd.include(request, response);
 		} else {
-//		String idSocieta = session.getAttribute("");
-//		Integer id = Integer.parseInt(idSocieta);
-			double x = Double.parseDouble(request.getParameter("stipendio"));
+
 			String data = request.getParameter("data");
 
 			Date dataU = null;
@@ -69,20 +79,18 @@ public class Annuncio_controller extends HttpServlet {
 			}
 
 			java.sql.Date daras = new java.sql.Date(dataU.getTime());
-//			set nome categoria
-//			a.setId(session.getAttribute("id"));
-			a.setId_societa_annuncio(2);
+			double x = Double.parseDouble(request.getParameter("stipendio"));
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
-			a.setStipendio(x);
 			a.setTipo_contratto(request.getParameter("tContratti"));
 			a.setTitolo_di_studio(request.getParameter("tStudio"));
-			a.setData_pubblicazione(daras);
 			a.setComune(request.getParameter("lComuni"));
-			System.out.println("ciao sono la " + request.getParameter("lComuni"));
-			as.inserisciAnnuncio(a);
+			a.setData_pubblicazione(daras);
+			a.setStipendio(x);
+
+			as.modificaAnnuncio(a, id);
 			
-			int id = 2;
+			
 			
 			List<Annuncio> listaAnnuncio = as.findById(id);
 			
@@ -95,8 +103,10 @@ public class Annuncio_controller extends HttpServlet {
 			request.setAttribute("annunci", listaAnnuncio);
 
 			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
+
 			rd.include(request, response);
 		}
+
 	}
 
 	/**
@@ -105,7 +115,8 @@ public class Annuncio_controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

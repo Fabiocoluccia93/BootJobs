@@ -1,10 +1,17 @@
 package com.bootjobs.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Territorio_utility {
 
-	public ArrayList<String> get_all_regioni();
+	public List<Territorio> get_all_regioni();
 
-	public ArrayList<String> get_all(String nome);
+	public List<Provincia> get_all_province(int regioni);
+
+	public List<Comuni> get_all_comuni(String provincia);
+
+	public List<Territorio> getOne(String nome);
+	
+	public List<Provincia> getSiglaPro(String nome_provincia);
+
 }
