@@ -46,6 +46,8 @@
 
 		</tbody>
 	</table>
-
+	<form action="Territorio_controller" method="get">
+	<button type="submit" class="btn btn-dark">Inserisci annuncio</button>
+	</form>
 </body>
 </html>

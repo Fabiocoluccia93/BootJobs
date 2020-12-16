@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,33 +44,42 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 
 		String idAnnuncio = request.getParameter("id");
 		Integer id = Integer.parseInt(idAnnuncio);
-		double x = Double.parseDouble(request.getParameter("stipendio"));
-		String data = request.getParameter("data");
 
-		Date dataU = null;
-		try {
-			dataU = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = sdf.parse(data);
-			dataU = date;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		java.sql.Date daras = new java.sql.Date(dataU.getTime());
-
-		// if (nomeAnnuncioE.equals(annuncioA)) {
-
+		System.out.println("*************************************");
+		System.out.println(request.getParameter("nAnnuncio"));
+		System.out.println(request.getParameter("descrizione"));
+		System.out.println(request.getParameter("tContratti"));
+		System.out.println(request.getParameter("tStudio"));
+		System.out.println(request.getParameter("lComuni"));
+		System.out.println(request.getParameter("stipendio"));
+		System.out.println(request.getParameter("data"));
+		System.out.println("*************************************");
+		
 		if (request.getParameter("nAnnuncio").equals("") || request.getParameter("descrizione").equals("")
-				|| request.getParameter("tContratti").equals("") || request.getParameter("tStudio").equals("")
-				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals("")
+				|| request.getParameter("tContratti").equals("Tipo contratto")
+				|| request.getParameter("tStudio").equals("Titolo di studio")
+				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals(null)
 				|| request.getParameter("data").equals(null)) {
 			out.println("Uno dei campi e' vuoto");
 
-			RequestDispatcher rd = request.getRequestDispatcher("view/annuncio.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("view/modifica.jsp");
 			rd.include(request, response);
 		} else {
 
+			String data = request.getParameter("data");
+
+			Date dataU = null;
+			try {
+				dataU = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = sdf.parse(data);
+				dataU = date;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			java.sql.Date daras = new java.sql.Date(dataU.getTime());
+			double x = Double.parseDouble(request.getParameter("stipendio"));
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
 			a.setTipo_contratto(request.getParameter("tContratti"));
@@ -79,10 +89,23 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			a.setStipendio(x);
 
 			as.modificaAnnuncio(a, id);
-		}
+			
+			
+			
+			List<Annuncio> listaAnnuncio = as.findById(id);
+			
+			for (int i = 0; i < listaAnnuncio.size(); i++) {
+				a = listaAnnuncio.get(i);
+				System.out.println(a.getNome_annuncio());
+			}
+			
+			
+			request.setAttribute("annunci", listaAnnuncio);
 
-		RequestDispatcher rd = request.getRequestDispatcher("");
-		rd.include(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
+
+			rd.include(request, response);
+		}
 
 	}
 

@@ -34,7 +34,7 @@ public class Annuncio_Service implements Annuncio_utility {
 		entr.begin();
 		em.persist(a_ins);
 		entr.commit();
-		em.close();
+		
 
 		return true;
 	}
@@ -52,9 +52,10 @@ public class Annuncio_Service implements Annuncio_utility {
 		.setParameter("com", a_mod.getComune())
 		.setParameter("date", a_mod.getData_pubblicazione())
 		.setParameter("b", id);
+		//aggiungere il set della categoria e sotto
 		int check = query.executeUpdate();
 		entr.commit();
-		em.close();
+		
 
 		if(check >= 1) {
 			return bo = true;

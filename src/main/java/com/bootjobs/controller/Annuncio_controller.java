@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,35 +44,34 @@ public class Annuncio_controller extends HttpServlet {
 		Annuncio_Service as = new Annuncio_Service();
 		HttpSession session = request.getSession();
 
-//		String idSocieta = session.getAttribute("");
-//		Integer id = Integer.parseInt(idSocieta);
-
-		double x = Double.parseDouble(request.getParameter("stipendio"));
-		String data = request.getParameter("data");
-
-		Date dataU = null;
-		try {
-			dataU = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = sdf.parse(data);
-			dataU = date;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		java.sql.Date daras = new java.sql.Date(dataU.getTime());
-
 		if (request.getParameter("nAnnuncio").equals("") || request.getParameter("descrizione").equals("")
 				|| request.getParameter("tContratti").equals("") || request.getParameter("tStudio").equals("")
 				|| request.getParameter("lComuni").equals("") || request.getParameter("stipendio").equals("")
 				|| request.getParameter("data").equals(null)) {
 			out.println("Uno dei campi e' vuoto");
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("view/annuncio.jsp");
 			rd.include(request, response);
 		} else {
+//		String idSocieta = session.getAttribute("");
+//		Integer id = Integer.parseInt(idSocieta);
+			double x = Double.parseDouble(request.getParameter("stipendio"));
+			String data = request.getParameter("data");
 
-			a.setId_societa_annuncio(1);
+			Date dataU = null;
+			try {
+				dataU = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = sdf.parse(data);
+				dataU = date;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			java.sql.Date daras = new java.sql.Date(dataU.getTime());
+//			set nome categoria
+//			a.setId(session.getAttribute("id"));
+			a.setId_societa_annuncio(2);
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
 			a.setStipendio(x);
@@ -81,8 +81,20 @@ public class Annuncio_controller extends HttpServlet {
 			a.setComune(request.getParameter("lComuni"));
 			System.out.println("ciao sono la " + request.getParameter("lComuni"));
 			as.inserisciAnnuncio(a);
+			
+			int id = 2;
+			
+			List<Annuncio> listaAnnuncio = as.findById(id);
+			
+			for (int i = 0; i < listaAnnuncio.size(); i++) {
+				a = listaAnnuncio.get(i);
+				System.out.println(a.getNome_annuncio());
+			}
+			
+			
+			request.setAttribute("annunci", listaAnnuncio);
 
-			RequestDispatcher rd = request.getRequestDispatcher("view/HomeSoc");
+			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
 			rd.include(request, response);
 		}
 	}

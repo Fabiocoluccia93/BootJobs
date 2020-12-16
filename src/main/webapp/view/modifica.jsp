@@ -63,7 +63,7 @@ function getComuni(){
 <body style="background: green;">
 	<form action="ModificaAnnuncio_controller" method="get">
 	
-		<input type="hidden" value="<%= request.getParameter("idAnnuncio") %>" name="id">
+		<input type="hidden" value="<%= session.getAttribute("idAnnuncio") %>" name="id">
 		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
 		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
 		<select name="tStudio">

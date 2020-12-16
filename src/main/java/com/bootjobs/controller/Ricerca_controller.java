@@ -83,7 +83,7 @@ public class Ricerca_controller extends HttpServlet {
 //			String idSocieta = session.getAttribute("");
 //			Integer id = Integer.parseInt(idSocieta);
 			
-			int id = 1;
+			int id = 2;
 			String nAnnuncio = request.getParameter("nomeAnnuncio");
 			System.out.println(nAnnuncio);
 			

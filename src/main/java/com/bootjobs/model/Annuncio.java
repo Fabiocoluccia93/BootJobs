@@ -17,13 +17,12 @@ import javax.persistence.Table;
 
 		@NamedQuery(name = "searchAnnuncio", query = "select e from Annuncio e where e.nome_annuncio like :name"),
 		@NamedQuery(name = "searchById", query = "select a from Annuncio a where a.id_societa_annuncio=:p"),
+		//Aggiungere la categoria e sotto
 		@NamedQuery(name = "Annuncioedit", query = "update Annuncio a set a.nome_annuncio = :nome , a.descrizione =:desc, a.stipendio = :sti, a.titolo_di_studio = :tito, a.tipo_contratto = :contract, a.comune = :com, a.data_pubblicazione = :date where a.id = :b"),
 
 })
 
 public class Annuncio {
-
-//	private Categoria categoria;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_annuncio")
@@ -44,20 +43,19 @@ public class Annuncio {
 	Date data_pubblicazione;
 	@Column(name = "comune")
 	private String comune;
+	@Column(name = "categoria")
+	private String categoria;
 
 	public Annuncio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Annuncio(
-
-//			Categoria categoria, 
-			String nome_annuncio, String titolo_di_studio, String tipo_contratto, String descrizione, Double stipendio,
-			int id_societa_annuncio, Date data_pubblicazione) {
+	public Annuncio(String categoria, String nome_annuncio, String titolo_di_studio, String tipo_contratto,
+			String descrizione, Double stipendio, int id_societa_annuncio, Date data_pubblicazione) {
 		super();
 
-//		this.categoria = categoria;
+		this.categoria = categoria;
 		this.id_societa_annuncio = id_societa_annuncio;
 		this.nome_annuncio = nome_annuncio;
 		this.titolo_di_studio = titolo_di_studio;
@@ -107,14 +105,6 @@ public class Annuncio {
 		this.descrizione = descrizione;
 	}
 
-//	public Categoria getCategoria() {
-//		return categoria;
-//	}
-//
-//	public void setCategoria(Categoria categoria) {
-//		this.categoria = categoria;
-//	}
-
 	public Double getStipendio() {
 		return stipendio;
 	}
@@ -145,6 +135,14 @@ public class Annuncio {
 
 	public void setComune(String comune) {
 		this.comune = comune;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 }
