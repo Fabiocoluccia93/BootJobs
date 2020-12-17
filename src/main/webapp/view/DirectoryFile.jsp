@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-            <form action="../../BootJobs/Amministratore_controller" method="get">
+            <form action="../../BootJobs/AmministratoreController" method="get">
             Destinazione foto:
             <input type="text" value="" name="directoryimmagini"/>
             
@@ -17,7 +17,7 @@
             
             </form>
             
-            <form action="../../BootJobs/Amministratore_controller" method="get">
+            <form action="../../BootJobs/AmministratoreController" method="get">
              Destinazione curriculum:
             <input type="text" value="" name="directorydocumenti"/>
           
