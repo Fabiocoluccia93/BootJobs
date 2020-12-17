@@ -71,7 +71,7 @@ public class Candidato
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_candidato")
+	@Column(name="id_candicato")
 	public Integer getId_candidato() {
 		return id_candidato;
 	}
