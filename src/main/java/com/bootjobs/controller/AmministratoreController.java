@@ -1,5 +1,6 @@
 package com.bootjobs.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootjobs.model.AmministratoreService;
+import com.bootjobs.model.FileService;
 import com.bootjobs.model.Societa;
 
 /**
@@ -37,6 +39,77 @@ public class AmministratoreController extends HttpServlet {
 	
 		RequestDispatcher r=null;
 		String param = request.getParameter("param");
+		String message = null;
+		
+		if(request.getParameter("param")!=null && param.equals("0"))
+		{
+			String directory = request.getParameter("directoryimmagini");
+			FileService.setupDirectoryImmagini(directory);	
+			try
+			{
+				File file=new File(directory);
+				if(!file.exists())
+				{
+						//crea la directory con il metodo mkdirs
+					if(file.mkdirs())
+					{
+						file.setExecutable(true, false);
+						file.setReadable(true, false);
+						file.setWritable(true, false);
+						message = "Directory foto creata e impostata nel database !";
+					}
+				}
+			
+					else
+					{
+						message = "Directory foto già esistente impostata nel database";
+					}
+				
+			}
+			catch (Exception e)
+			{
+				System.err.println("errore");
+			}
+			request.setAttribute("message", message);
+			r=request.getRequestDispatcher("/view/DirectoryFile.jsp");
+		}
+	
+		message=null;
+		if(request.getParameter("param")!=null && param.equals("4"))
+		{
+			
+			String directory =  request.getParameter("directorydocumenti");
+			FileService.setupDirectoryDocumenti(directory);	
+			try
+			{
+				File file=new File(directory);
+				if(!file.exists())
+				{
+						//crea la directory con il metodo mkdirs
+					if(file.mkdirs())
+					{
+						file.setExecutable(true, false);
+						file.setReadable(true, false);
+						file.setWritable(true, false);
+						message = "Directory curriculum creata e impostata nel database!";
+					}
+				}
+					else
+					{
+						message = "Directory curriculum già esistente impostata nel database";
+					}
+				}
+				
+			
+		
+		
+			catch (Exception e)
+			{
+				System.err.println("errore");
+			}
+			request.setAttribute("message", message);
+			r=request.getRequestDispatcher("/view/DirectoryFile.jsp");
+		}
 		
 
 		if(param.equals("1")) {
