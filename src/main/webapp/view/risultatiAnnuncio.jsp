@@ -29,6 +29,7 @@
 						&descrizione=${annuncio.descrizione}
 						&comune=${annuncio.comune}
 						&id=${annuncio.id}
+						&idS=${annuncio.id_societa_annuncio }
 						&titolo=${annuncio.titolo_di_studio}
 						&tipo=${annuncio.tipo_contratto}
 						&stipendio=${annuncio.stipendio}

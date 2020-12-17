@@ -9,7 +9,9 @@
 
 </head>
 <body style="background: green;">
-<input type="hidden" value="<%= request.getParameter("id") %>" name="idAnnuncio">
+<form action="CandidaturaController" method="post">
+<input type="hidden" value="<%= request.getParameter("id") %>" name="annuncio">
+<input type="hidden" value="<%= request.getParameter("idS") %>" name="societa">
 <table border="1" class="table">
 		<thead>
 			<tr>
@@ -42,5 +44,6 @@
 		</tbody>
 	</table>
 
+</form>
 </body>
 </html>
