@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table( name = "c2" )
+@Table( name = "candidato" )
 @NamedQueries(
 {//id AS id_candidato 
 @NamedQuery(name="Candidato.findByName", query="SELECT c FROM Candidato c where c.mail LIKE :mail "),
