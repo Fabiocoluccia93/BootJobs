@@ -15,5 +15,6 @@
 <!-- <a href="view/visualizzaimmagine.jsp">prova visualizzazione immagini<a> -->
 <a href="view/invioCandidatura.jsp">prova invio candidatura<a>
 <a href="view/annuncio.jsp">annuncio<a>
+<a href="view/DirectoryFile.jsp">DirectoryFile<a>
 </body>
 </html>
