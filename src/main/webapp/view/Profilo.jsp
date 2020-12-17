@@ -11,7 +11,7 @@ function getProvince() {
 	var ajax = new XMLHttpRequest();
 	var regioni = document.getElementById('regione').value;
 	
-	ajax.open('GET', 'Province_Controller?regioni='+regioni, true);
+	ajax.open('GET', 'Province_controller?regioni='+regioni, true);
 
 	ajax.onload = function() {
 		
@@ -33,7 +33,7 @@ function getComuni(){
 	var ajax = new XMLHttpRequest();
 	var province = document.getElementById('province').value;
 	
-	ajax.open('GET', 'Comuni_Controller?province='+ province, true);
+	ajax.open('GET', 'Comuni_controller?province='+ province, true);
 
 	ajax.onload = function() {
 		
