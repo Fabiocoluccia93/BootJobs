@@ -14,8 +14,9 @@ public class Candidatura_service
 	{
 		EntityManager em= Dao.newInstance().createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Candidatura> query =em.createQuery("Candidatura.checkannuncio",Candidatura.class).setParameter("id_candidato", a.getId_candidato_fk()).setParameter("id_annuncio", a.getId_annuncio_fk());
-		List<Candidatura> listacandidature = query.getResultList();
+		Query query =em.createNamedQuery("Candidatura.checkannuncio").setParameter("id_candidato", a.getId_candidato_fk()).setParameter("id_annuncio", a.getId_annuncio_fk());
+		List listacandidature = query.getResultList();
+		
 		em.getTransaction().commit();
 		em.close();
 		boolean check = false;

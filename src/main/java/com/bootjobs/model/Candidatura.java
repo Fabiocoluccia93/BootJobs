@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 @NamedQueries({
 @NamedQuery(name="Candidatura.delete", query="DELETE FROM Candidatura  where id_candidatura LIKE :id_candidatura "),
 @NamedQuery(name="Candidatura.findall", query="SELECT c FROM Candidatura c where c.id_candidato_fk LIKE :id_candidato_fk "),
-@NamedQuery(name="Candidatura.checkannuncio", query="Select from Candidatura c where c.id_candidato_fk = :id_candidato and c.id_annuncio_fk = :id_annuncio")
+@NamedQuery(name="Candidatura.checkannuncio", query="SELECT c FROM Candidatura c WHERE c.id_candidato_fk LIKE :id_candidato AND c.id_annuncio_fk LIKE:id_annuncio")
 })
 public class Candidatura
 {
@@ -46,6 +47,7 @@ public Candidatura( Integer id_candidato_fk, Integer annuncio, Integer id_societ
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name="id_candidatura")
 public Integer getId() {
 	return id;
 }

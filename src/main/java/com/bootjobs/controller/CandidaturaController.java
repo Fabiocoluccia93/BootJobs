@@ -55,7 +55,6 @@ public class CandidaturaController extends HttpServlet {
 		b.setId_annuncio_fk(id_adnnuncioInt);
 		Integer id_societaInt = Integer.parseInt(id_societa);
 		b.setId_societa_fk(id_societaInt);
-		a.inserisciCandidatura(b);
 		String message;
 		boolean check = a.checkCandidatura(b);
 		if(check=true)
