@@ -21,7 +21,7 @@
              Destinazione curriculum:
             <input type="text" value="" name="directorydocumenti"/>
           
-            <input type="hidden" name="param" value="1">
+            <input type="hidden" name="param" value="4">
             <input type="submit" value="upload" name="upload" id="upload">
              </form>
              
