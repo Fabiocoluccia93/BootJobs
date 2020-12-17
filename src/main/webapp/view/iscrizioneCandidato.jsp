@@ -74,14 +74,19 @@ function getComuni(){
 <input type="text"  name="numero_telefono">Numero di Telefono<br>
 
 <select name="tregione" id="regione" onchange="getProvince()">
+			<option>Regione</option>
 			<c:forEach items="${sessionScope.listaRegioni}" var="regioni">
 				<option id="dRegione" value="${regioni}">${regioni}</option>
 			</c:forEach>
-		</select><br> <select id="province" onchange="getComuni()">
-
-		</select> <br> <select id="comuni" name="lComuni">
-
-		</select><br>
+			
+		</select>
+		<br> 
+		
+		<select id="province" onchange="getComuni()"></select>
+		<br> 
+		
+		<select id="comuni" name="lComuni"></select>
+		<br>
 		
 <input type="date" name="data_nascita">Data di nascita<br>
 Seleziona la foto da caricare      <input type="file" name="file" id="file" /> <br/>
