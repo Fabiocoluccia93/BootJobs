@@ -1,6 +1,8 @@
 package com.bootjobs.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +42,7 @@ public class CandidaturaController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		RequestDispatcher r=null;
 		Candidatura_service a  =  new Candidatura_service();
 		Candidatura b  = new Candidatura();
 		HttpSession httpsession = request.getSession();
@@ -53,9 +56,20 @@ public class CandidaturaController extends HttpServlet {
 		Integer id_societaInt = Integer.parseInt(id_societa);
 		b.setId_societa_fk(id_societaInt);
 		a.inserisciCandidatura(b);
-		
-
-		doGet(request, response);
+		String message;
+		boolean check = a.checkCandidatura(b);
+		if(check=true)
+		{
+			a.inserisciCandidatura(b);
+			message = "Candidatura inviata con successo";
+		}
+		else
+		{
+			message = "Candidatura gia inviata impossibile inviarne un'altra";
+		}
+		request.setAttribute("messaggio", message);
+		r=request.getRequestDispatcher("");
+		r.forward(request, response);
 	}
 
 }
