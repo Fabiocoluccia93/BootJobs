@@ -40,6 +40,7 @@ public class Province_controller extends HttpServlet {
 		Territorio_service ts = new Territorio_service();
 		String regione = request.getParameter("regioni");
 		
+<<<<<<< HEAD
 		List<Territorio> infRegione = ts.getOne(regione);
 		t = infRegione.get(0);
 		int codIstat = t.getId();
@@ -50,6 +51,21 @@ public class Province_controller extends HttpServlet {
 			out.println("<option>" + lp.get(i).getNome_provincia() + "</option>");
 		}	
 		}
+=======
+		
+		List<Territorio> infRegione = ts.getOne(regione);
+		t = infRegione.get(0);
+		int codIstat = t.getId();
+		
+		List<Provincia> lp = ts.get_all_province(codIstat);
+		out.println("<option> Provincia </option>");
+		for(int i = 0; i<lp.size();i++) {
+			out.println("<option>" + lp.get(i).getNome_provincia() + "</option>");
+		}	
+	}
+	
+
+>>>>>>> branch 'Test_fornaro_turrini' of https://github.com/Fabiocoluccia93/BootJobs.git
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

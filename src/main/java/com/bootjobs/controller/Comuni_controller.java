@@ -33,6 +33,7 @@ public class Comuni_controller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		PrintWriter out = response.getWriter();
@@ -51,6 +52,23 @@ public class Comuni_controller extends HttpServlet {
 		}
 	}
 
+=======
+		PrintWriter out = response.getWriter();
+		Territorio_service ts = new Territorio_service();
+		Provincia pro = new Provincia();
+		String province = request.getParameter("province");
+
+		List<Provincia> siglaPro =ts.getSiglaPro(province);
+		pro = siglaPro.get(0);
+		
+		
+		List<Comuni> lp = ts.get_all_comuni(pro.getSigla());
+		out.println("<option> Comune </option>");
+		for (int i = 0; i < lp.size(); i++) {
+			out.println("<option>" + lp.get(i).getNome_comune() + "</option>");
+		}
+	}
+>>>>>>> branch 'Test_fornaro_turrini' of https://github.com/Fabiocoluccia93/BootJobs.git
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

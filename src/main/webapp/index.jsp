@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>BOOTJOBS</title>
 </head>
+<<<<<<< HEAD
 <body style="background: lime">
 <h1 style="font:italic; size:5em; color: blue; text-align: center; ">Benvenuto in BootJobs</h1>
 <hr>
@@ -45,5 +46,14 @@ margin-top: 100px; ;">
 
 
 
+=======
+<body>
+	<form action="Ricerca_controller" method="post">
+	<input type="hidden" name="param" value="1">
+ 	<input type="text" name="nomeAnnuncio" id="nomeAnnuncio">
+ 	<button type="submit">Cerca</button>
+	
+	</form>
+>>>>>>> branch 'Test_fornaro_turrini' of https://github.com/Fabiocoluccia93/BootJobs.git
 </body>
 </html>

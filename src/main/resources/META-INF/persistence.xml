@@ -12,15 +12,29 @@
     <persistence-unit name="bootjobs">
         
 
+<<<<<<< HEAD
         <class>com.bootjobs.model.Amministratore</class>      
         <class>com.bootjobs.model.Societa</class>
+=======
+        <class>com.bootjobs.model.Annuncio</class>
+        <class>com.bootjobs.model.Annuncio_service</class>
+        <class>com.bootjobs.model.Territorio</class>
+        <class>com.bootjobs.model.Territorio_service</class>
+        <class>com.bootjobs.model.Provincia</class>
+        
+        
+>>>>>>> branch 'Test_fornaro_turrini' of https://github.com/Fabiocoluccia93/BootJobs.git
 
         <properties>
         
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bootjobs" />
             <property name="javax.persistence.jdbc.user" value="root" />
+<<<<<<< HEAD
             <property name="javax.persistence.jdbc.password" value="root" />
+=======
+            <property name="javax.persistence.jdbc.password" value="1234" />
+>>>>>>> branch 'Test_fornaro_turrini' of https://github.com/Fabiocoluccia93/BootJobs.git
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             
