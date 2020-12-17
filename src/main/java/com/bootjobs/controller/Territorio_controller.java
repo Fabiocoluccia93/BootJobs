@@ -23,13 +23,13 @@ import com.bootjobs.model.TitotloStudio_service;
  * Servlet implementation class Territorio_controller
  */
 @WebServlet("/Territorio_controller")
-public class Territorio_Controller extends HttpServlet {
+public class Territorio_controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Territorio_Controller() {
+    public Territorio_controller() {
         super();
         // TODO Auto-generated constructor stub
     }
