@@ -92,7 +92,7 @@ Seleziona il curriculum da caricare      <input type="file" name="file1" id="fil
 </form>
  <c:if test="${not empty message}">
     <h1>${message}</h1>
-    <a href="../BootJobs">Homepage<a>
+    <a href="../BootJobs">Homepage</a>
 	</c:if>
 </fieldset>
 
