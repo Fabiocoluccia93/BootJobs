@@ -80,7 +80,7 @@ public class Annuncio_Service implements Annuncio_utility {
 
 		lAnnuncio = q.getResultList();
 		entr.commit();
-		em.close();
+		
 
 		return lAnnuncio;
 

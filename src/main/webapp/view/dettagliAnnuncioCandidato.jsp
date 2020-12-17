@@ -9,6 +9,9 @@
 
 </head>
 <body style="background: green;">
+<form action="../CandidaturaController" method="post">
+<input type="hidden" value="<%= request.getParameter("id") %>" name="annuncio">
+<input type="hidden" value="<%= request.getParameter("idS") %>" name="societa">
 <table border="1" class="table">
 		<thead>
 			<tr>
@@ -35,6 +38,7 @@
 					<td><%= request.getParameter("stipendio") %></td>
 					<td><%= request.getParameter("data") %></td>
 					<td><%= request.getParameter("comune") %></td>
+					<td><button type="submit" class="btn btn-dark">Candidati</button>
 				</tr>
 
 		</tbody>

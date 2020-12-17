@@ -227,7 +227,8 @@ function getComuni(){
    <button onclick="myFunction()">modifica</button>
    </div>
    <div class="column right">
-   <a href="../BootJobs">Homepage<a>
+   <a href="../BootJobs">Homepage</a>
+   </div>
    </div>
   </fieldset>
      <script>
