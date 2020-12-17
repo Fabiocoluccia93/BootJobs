@@ -16,6 +16,8 @@ public class Candidatura_service
 		em.getTransaction().begin();
 		Query query =em.createQuery("Select from Candidatura c where c.id_candidato_fk=:id_candidato and id_annuncio_fk=:id_annuncio").setParameter("id_candidato", a.getId_candidato_fk()).setParameter("id_annuncio", a.getId_annuncio_fk());
 		List listacandidature = query.getResultList();
+		em.getTransaction().commit();
+		em.close();
 		boolean check = false;
 		if(listacandidature.size()>1)
 		{
