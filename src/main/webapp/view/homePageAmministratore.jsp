@@ -14,6 +14,8 @@
 <a href="AmministratoreController?param=1"> Pagina per eliminare una societa</a>
 <br>
 <br>
+<a href="view/DirectoryFile.jsp">DirectoryFile</a>
+<br><br>
 
 <form action="AmministratoreController" method="post">
 <input type="hidden" name="param" value="4">	

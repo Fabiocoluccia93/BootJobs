@@ -12,7 +12,7 @@
 
 
 <p align="right">
-<a  href="">iscrizione utente</a>
+<a  href="view/Login.jsp">per gli utenti</a>
  | 
 <a  href="IndexController?param=1">per le società</a>
 </p>
