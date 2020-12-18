@@ -60,12 +60,12 @@ function getComuni(){
 
 </script>
 </head>
-<body style="background: green;">
+<body style="background: lime;">
 	<form action="ModificaAnnuncio_controller" method="get">
 	
 		<input type="hidden" value="<%= session.getAttribute("idAnnuncio") %>" name="id">
-		Nome annuncio<input type='text' id='nAnnuncio' name='nAnnuncio' /> <br>
-		Descrizione<input type='text' id='descrizione' name='descrizione' /><br>
+		<input type='text' id='nAnnuncio' name='nAnnuncio' /> Nome annuncio<br>
+		<input type='text' id='descrizione' name='descrizione' />Descrizione<br>
 		<select name="tStudio">
 		<option>Titolo di studio</option>
 			<c:forEach items="${sessionScope.listaTitolo}" var="titolo">
@@ -78,8 +78,8 @@ function getComuni(){
 				<option value="${contratti}">${contratti}</option>
 			</c:forEach>
 		</select><br> 
-		Stipendio<input type="text" id="stipendio" name="stipendio"><br>
-		Data<input type="date" id='data' name='data' value="14/01/2017"><br>
+		<input type="text" id="stipendio" name="stipendio">Stipendio<br>
+		<input type="date" id='data' name='data' value="14/01/2017">Data<br>
 		<select name="tregione" id="regione" onchange="getProvince()">
 		<option>Regioni </option>
 			<c:forEach items="${sessionScope.listaRegioni1}" var="regioni">

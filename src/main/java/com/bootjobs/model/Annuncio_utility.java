@@ -6,6 +6,8 @@ public interface Annuncio_utility {
 
 	public Annuncio findById(int id);
 	
+	public List<Annuncio> findByIdSoc(int id);
+
 	public boolean inserisciAnnuncio(Annuncio a_ins);
 
 	public boolean modificaAnnuncio(Annuncio a_mod , int id);

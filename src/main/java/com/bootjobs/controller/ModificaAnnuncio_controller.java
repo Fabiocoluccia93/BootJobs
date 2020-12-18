@@ -12,9 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
+import com.bootjobs.model.Societa;
 
 /**
  * Servlet implementation class ModificaAnnuncio_controller
@@ -40,6 +42,8 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 		Annuncio_Service as = new Annuncio_Service();
 		Annuncio a = new Annuncio();
 		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+
 
 		String idAnnuncio = request.getParameter("id");
 		Integer id = Integer.parseInt(idAnnuncio);
@@ -90,17 +94,18 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			as.modificaAnnuncio(a, id);
 			
 			
+			Societa s = new Societa();
+			s = (Societa) session.getAttribute("societa");
+			List<Annuncio> listaAnnuncio = as.findByIdSoc(s.getId());
 			
-			Annuncio listaAnnuncio = as.findById(id);
-			
+			System.out.println(id);
 //			for (int i = 0; i < listaAnnuncio.size(); i++) {
 //				a = listaAnnuncio.get(i);
 //			}
 //			
-			
-			request.setAttribute("annunci", listaAnnuncio);
+			session.setAttribute("annunci", listaAnnuncio);
 
-			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/view/homePageSocieta.jsp");
 
 			rd.include(request, response);
 		}

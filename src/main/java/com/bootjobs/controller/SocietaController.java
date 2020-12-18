@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bootjobs.model.Annuncio;
+import com.bootjobs.model.Annuncio_Service;
 import com.bootjobs.model.Societa;
 import com.bootjobs.model.SocietaService;
 import com.bootjobs.model.Territorio;
@@ -69,6 +71,8 @@ public class SocietaController extends HttpServlet {
 			
 			Societa s =null;
 			SocietaService ss = new SocietaService();
+			Annuncio_Service as = new Annuncio_Service();
+			Annuncio a = new Annuncio();
 			
 			
 			String mail=request.getParameter("mail");
@@ -79,7 +83,15 @@ public class SocietaController extends HttpServlet {
 				if (s!=null) {
 
 					HttpSession session = request.getSession();
+					
+					List<Annuncio> listaAnnuncio = as.findByIdSoc(s.getId());
 
+					for (int i = 0; i < listaAnnuncio.size(); i++) {
+						a = listaAnnuncio.get(i);
+						System.out.println(a.getNome_annuncio());
+					}
+					
+					session.setAttribute("annunci", listaAnnuncio);
 					session.setAttribute("societa", s);
 					
 					r=request.getRequestDispatcher("view/homePageSocieta.jsp");

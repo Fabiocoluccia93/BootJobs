@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<body style="background: green;">
+<body style="background: lime">
 <form action="../Territorio1_cotroller" method="get">
 <input type="hidden" value="<%= request.getParameter("id") %>" name="id_Annuncio" >
 
