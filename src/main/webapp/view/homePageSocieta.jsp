@@ -57,6 +57,11 @@
 <br><br>
 <a href="SocietaController?param=1">Modifica profilo</a>
 <br><br>
+<a href="view/annuncio.jsp">inserisci annunci</a>
+<br><br>
+<a href="view/modifica.jsp">Modifica annunci</a>
+<br><br>
+
 <a href="SocietaController?param=2" style="color: red;">Elimina profilo della societa</a>	
 	
 	
