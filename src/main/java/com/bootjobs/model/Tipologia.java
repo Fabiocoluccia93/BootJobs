@@ -10,20 +10,18 @@ import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tipologia")
-@SecondaryTable(name="titolo_di_studio", pkJoinColumns=@PrimaryKeyJoinColumn(name="id_titolo_di_studio"))
+@Table(name = "tipo_contratto_tb")
 public class Tipologia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_tipologia")
+	@Column(name = "id_tipo_contratto")
 	private int id_tipologia;
 
-	@Column(name = "tipo_contratto")
+	@Column(name = "tipologia")
 	private String tipologia;
 	
-	@Column(name="titolo_di_studio", table="titolo_di_studio")
-	private String tds;
+
 
 	public Tipologia() {
 		super();
@@ -52,12 +50,5 @@ public class Tipologia {
 		this.tipologia = tipologia;
 	}
 
-	public String getTds() {
-		return tds;
-	}
-
-	public void setTds(String tds) {
-		this.tds = tds;
-	}
 
 }

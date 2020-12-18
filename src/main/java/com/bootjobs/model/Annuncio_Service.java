@@ -12,7 +12,7 @@ public class Annuncio_Service implements Annuncio_utility {
 	EntityManager em = Dao.newInstance().createEntityManager();
 	EntityTransaction entr = em.getTransaction();
 
-	@SuppressWarnings("unchecked")
+	
 	public Annuncio findById(int id)
 	{
 		entr.begin();
@@ -29,6 +29,20 @@ public class Annuncio_Service implements Annuncio_utility {
 //		em.close();
 //		
 //		return a;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Annuncio> findByIdSoc(int id) {
+		List<Annuncio> a = new ArrayList<Annuncio>();
+		Query q = em.createNamedQuery("searchById").setParameter("p", id);
+		
+		entr.begin();
+		a= q.getResultList();
+		entr.commit();
+		em.close();
+		
+		return a;
 	}
 
 	public Annuncio_Service() {

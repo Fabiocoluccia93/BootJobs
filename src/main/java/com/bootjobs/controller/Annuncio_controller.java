@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Annuncio_Service;
+import com.bootjobs.model.Societa;
 
 /**
  * Servlet implementation class Annuncio_controller
@@ -68,9 +69,11 @@ public class Annuncio_controller extends HttpServlet {
 			}
 
 			java.sql.Date daras = new java.sql.Date(dataU.getTime());
-//			set nome categoria
-//			a.setId(session.getAttribute("id"));
-			a.setId_societa_annuncio(2);
+			
+			Societa s = new Societa();
+			s = (Societa) session.getAttribute("societa");
+			
+			a.setId_societa_annuncio(s.getId());
 			a.setNome_annuncio(request.getParameter("nAnnuncio"));
 			a.setDescrizione(request.getParameter("descrizione"));
 			a.setStipendio(x);
@@ -81,9 +84,9 @@ public class Annuncio_controller extends HttpServlet {
 			System.out.println("ciao sono la " + request.getParameter("lComuni"));
 			as.inserisciAnnuncio(a);
 			
-			int id = 2;
 			
-			Annuncio listaAnnuncio = as.findById(id);
+			
+			List<Annuncio> listaAnnuncio = as.findByIdSoc(s.getId());
 //			
 //			for (int i = 0; i < listaAnnuncio.size(); i++) {
 //				a = listaAnnuncio.get(i);
@@ -91,9 +94,9 @@ public class Annuncio_controller extends HttpServlet {
 //			}
 			
 			
-			request.setAttribute("annunci", listaAnnuncio);
+			session.setAttribute("annunci", listaAnnuncio);
 
-			RequestDispatcher rd = request.getRequestDispatcher("view/risultatiAnnuncioSocieta.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/view/homePageSocieta.jsp");
 			rd.include(request, response);
 		}
 	}
