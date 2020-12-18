@@ -57,7 +57,7 @@ public class CandidaturaController extends HttpServlet {
 		b.setId_societa_fk(id_societaInt);
 		String message;
 		boolean check = a.checkCandidatura(b);
-		if(check=true)
+		if(check==true)
 		{
 			a.inserisciCandidatura(b);
 			message = "Candidatura inviata con successo";
@@ -66,8 +66,8 @@ public class CandidaturaController extends HttpServlet {
 		{
 			message = "Candidatura gia inviata impossibile inviarne un'altra";
 		}
-		request.setAttribute("messaggio", message);
-		r=request.getRequestDispatcher("");
+		request.setAttribute("message", message);
+		r=request.getRequestDispatcher("/view/dettagliAnnuncioCandidato.jsp");
 		r.forward(request, response);
 	}
 

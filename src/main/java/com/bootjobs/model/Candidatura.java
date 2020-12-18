@@ -51,7 +51,7 @@ public Candidatura( Integer id_candidato_fk, Integer annuncio, Integer id_societ
 public Integer getId() {
 	return id;
 }
-public void setId(int Integer) {
+public void setId(int id) {
 	this.id = id;
 }
 public Integer getId_candidato_fk() {
