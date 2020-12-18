@@ -70,7 +70,12 @@ function getComuni(){
 <input type="password" name="password">Password <br>	
 <input type="text" name="nome">Nome<br>
 <input type="text" name="cognome">Cognome<br>
-<input type="text" name="titolo_studio">Titolo di Studio<br>
+<select name="titolo_studio">
+		<option>Titolo di studio</option>
+			<c:forEach items="${sessionScope.listaTitolo}" var="titolo">
+				<option value="${titolo}">${titolo}</option>
+			</c:forEach>
+		</select><br>
 <input type="text"  name="numero_telefono">Numero di Telefono<br>
 
 <select name="tregione" id="regione" onchange="getProvince()">

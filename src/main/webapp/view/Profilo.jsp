@@ -148,19 +148,32 @@ function getComuni(){
 		  		<input type="hidden"  name="id" value='${profilo.id_candidato}'><br>
 		  		<input type="text"  name="nome" value="<c:out value='${profilo.nome}' />"/><br>
 		  		<input type="text" name="cognome" value="<c:out value='${profilo.cognome}' />"/><br>
-		  		<input type="text" name="data_nascita" value="<c:out value='${profilo.data_nascita}' />"/><br>
-			  	<input type="text" name="titolo_studio" value="<c:out value='${profilo.titolo_studio}' />"/><br>
+		  		
+		  		<input type="date" name="data_nascita" id="demo" /> <br>
+		  		
+			  	<select name="titolo_studio">
+					
+						<option selected="selected" value="${profilo.titolo_studio}">${profilo.titolo_studio} </option>
+						
+					<c:forEach items="${sessionScope.listaTitolo}" var="titolo">
+						<option value="${titolo}">${titolo}</option>
+						
+						</c:forEach>
+				</select><br>
 			  	<input type="text" name="numero_telefono" value="<c:out value='${profilo.numero_telefono}' />"/><br>
 		  		<select name="tregione" id="regione" onchange="getProvince()">
+		  		<option selected="selected" >usa i 3 menu per cambiare comune</option>
 			     <c:forEach items="${sessionScope.listaRegioni}" var="regioni">
 				 <option id="dRegione" value="${regioni}">${regioni}</option>
 			    </c:forEach>
 		        </select><br> <select id="province" onchange="getComuni()">
 					</select> <br> <select id="comuni" name="lComuni">
+					<option selected="selected" value="${profilo.comune_candidato}">${profilo.comune_candidato}</option>
 					</select><br>
 		  		<input type="text"  name="mail" value="<c:out value='${profilo.mail}' />"/><br>
-		  		<input type="hidden"  name="password" value='${profilo.password}'><br>
+		  		<input type="hidden"  name="password" value='${profilo.password}'>
 		  		<input type="hidden" name="param" value="4">
+		  		Premi il tasto per effettuare la modifica<br>
 		  		<input type="submit" value="Modifica Profilo">
 		  		</form>
 		  		<br><br>
@@ -175,6 +188,7 @@ function getComuni(){
 		  		<input type="hidden" name="comune" value='${profilo.comune_candidato}'>
 		  		<input type="hidden" name="mail" value= '${profilo.mail}'>
 		  		<input type="hidden" name="param" value="8"> <br>
+		  		Premi il tasto per effettuare la modifica<br>
 		  		<input type="submit" value="Modifica Foto">
 		  		</form>
 		  		<br><br>
@@ -189,6 +203,7 @@ function getComuni(){
 		  		<input type="hidden" name="comune" value='${profilo.comune_candidato}'>
 		  		<input type="hidden" name="mail" value= '${profilo.mail}'>
 		  		<input type="hidden" name="param" value="9"> <br>
+		  		Premi il tasto per effettuare la modifica<br>
 		  		<input type="submit" value="Modifica Curriculum">
 		  		</form>
   </div>
@@ -240,6 +255,9 @@ function myFunction()
   } else {
     x.style.display = "none";
   }
+<%--   <%=(String)session.getAttribute("data1") %> --%>
+<%-- <%=request.getAttribute("data1").toString()%>"  --%>
+  document.getElementById("demo").value = '${sessionScope.data1}';
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'Candidato_controller?param=10', true);
   xhr.send();

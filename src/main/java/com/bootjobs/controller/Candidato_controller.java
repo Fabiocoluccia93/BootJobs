@@ -33,12 +33,15 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.catalina.Session;
+import org.w3c.dom.DOMStringList;
 
 import com.bootjobs.model.Candidato;
 import com.bootjobs.model.Candidato_service;
 import com.bootjobs.model.FileService;
 import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
+import com.bootjobs.model.TitoloStudio;
+import com.bootjobs.model.TitotloStudio_service;
 
 /**
  * Servlet implementation class Candidato_controller
@@ -71,6 +74,8 @@ public class Candidato_controller extends HttpServlet {
 			RequestDispatcher r = null ;
 			HttpSession session = request.getSession();
 			Territorio_service ts = new Territorio_service();
+			TitotloStudio_service titoS= new TitotloStudio_service();
+			TitoloStudio titleS = new TitoloStudio();
 			List<Territorio> regioni = ts.get_all_regioni();
 			ArrayList<String> tbregioni = new ArrayList<String>();
 			for (int i = 0; i < regioni.size(); i++) {
@@ -78,8 +83,14 @@ public class Candidato_controller extends HttpServlet {
 
 				tbregioni.add(t.getRegione());
 			}
-			
-			ArrayList<String> contratto = new ArrayList<String>();
+			ArrayList<String> titolo = new ArrayList<String>();
+
+			List<TitoloStudio> tit = titoS.getTitoloS();
+			for(int i = 0; i<tit.size();i++) {
+				titleS = tit.get(i);
+				titolo.add(titleS.getTds());
+			}
+			session.setAttribute("listaTitolo", titolo);
 			session.setAttribute("listaRegioni", tbregioni);
 			response.sendRedirect("view/Profilo.jsp");
 			
@@ -89,6 +100,8 @@ public class Candidato_controller extends HttpServlet {
 		{
 			RequestDispatcher r = null ;
 			HttpSession session = request.getSession();
+			TitotloStudio_service titoS= new TitotloStudio_service();
+			TitoloStudio titleS = new TitoloStudio();
 			Territorio_service ts = new Territorio_service();
 			List<Territorio> regioni = ts.get_all_regioni();
 			ArrayList<String> tbregioni = new ArrayList<String>();
@@ -97,9 +110,17 @@ public class Candidato_controller extends HttpServlet {
 
 				tbregioni.add(t.getRegione());
 			}
+			ArrayList<String> titolo = new ArrayList<String>();
+
+			List<TitoloStudio> tit = titoS.getTitoloS();
+			for(int i = 0; i<tit.size();i++) {
+				titleS = tit.get(i);
+				titolo.add(titleS.getTds());
+			}
 			
-			ArrayList<String> contratto = new ArrayList<String>();
+			
 			session.setAttribute("listaRegioni", tbregioni);
+			session.setAttribute("listaTitolo", titolo);
 			response.sendRedirect("view/iscrizioneCandidato.jsp");
 			
 		}
@@ -268,11 +289,16 @@ public class Candidato_controller extends HttpServlet {
 			request.setAttribute("email", c_isc.getMail());
 				if(c_oklog!=null)
 				{
+					Date dn=null;
+					dn = c_oklog.getData_nascita();
+					String datastring = dn.toString();
+					String datastamp=datastring.substring(0, 10);
+					System.out.println(datastamp);
 					request.setAttribute("profilo", c_oklog);
-
+					
 					HttpSession httpsession = request.getSession();
 					httpsession.setAttribute("id_utente", c_oklog.getId_candidato());
-					
+					httpsession.setAttribute("data1", datastamp);
 					foto =  c_oklog.getFoto();
 					curriculum = c_oklog.getCurriculum();
 					
@@ -348,8 +374,12 @@ public class Candidato_controller extends HttpServlet {
 				
 				e.printStackTrace();
 			}
-	
-			
+			Date dn = c_mod.getData_nascita();
+			String datastring = dn.toString();
+			String datastamp=datastring.substring(0, 10);
+			System.out.println(datastamp);
+			HttpSession httpsession = request.getSession();
+			httpsession.setAttribute("data1", datastamp);
 			String message = null;
 			if(c_mod.getMail().equals("")||c_mod.getNome().equals("")||c_mod.getCognome().equals("")||c_mod.getPassword().equals("")||c_mod.getComune_candidato().equals("")||c_mod.getTitolo_studio().equals("")||c_mod.getNumero_telefono().equals("")||c_mod.getComune_candidato().equals(""))
 			{
@@ -425,6 +455,7 @@ public class Candidato_controller extends HttpServlet {
 			 request.setAttribute("message", message);
 			 r=request.getRequestDispatcher("/view/Profilo.jsp");
 			 r.forward(request,response);
+			 
 		}
 		if(request.getParameter("param")!=null && param.equals("9"))
 		{
