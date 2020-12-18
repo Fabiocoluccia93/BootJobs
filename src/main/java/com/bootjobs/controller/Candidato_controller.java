@@ -279,6 +279,14 @@ public class Candidato_controller extends HttpServlet {
 					r=request.getRequestDispatcher("/view/Profilo.jsp");	
 					r.forward(request, response);
 				}
+				else
+				{
+					String message;
+					message = "username o password errata riprova";
+					request.setAttribute("message", message);
+					r=request.getRequestDispatcher("/view/Login.jsp");	
+					r.forward(request, response);
+				}
 				
 				
 		}

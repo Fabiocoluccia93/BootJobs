@@ -71,7 +71,7 @@ function getComuni(){
     float: left;
     }
  	.foto {
-    width: 20%;
+    width: 35%;
     }
     /* Set width length for the left, right and middle columns */
     .left {
@@ -116,7 +116,7 @@ function getComuni(){
 
   <div class="row">
   		<div class="column foto">
-  <img src="http://localhost:8080/BootJobs/Candidato_controller?param=6" width="250px" height="250px">
+  <img src="http://localhost:8080/BootJobs/Candidato_controller?param=6" width="250px" height="250px"><br>
   <a href="http://localhost:8080/BootJobs/Candidato_controller?param=7">Download Curriculum</a>
   </div>
   
@@ -163,9 +163,9 @@ function getComuni(){
 		  		<input type="hidden" name="param" value="4">
 		  		<input type="submit" value="Modifica Profilo">
 		  		</form>
-		  		
+		  		<br><br>
 		  		<form action="Candidato_controller" method="post" enctype="multipart/form-data"> 
-		  		Seleziona la foto da caricare<input type="file" name="file2" id="file2" /> <br/>
+		  		Seleziona la foto da caricare<input type="file" name="file2" id="file2" />
 		  		<input type="hidden" name="id" value='${profilo.id_candidato}'>
 		  		<input type="hidden" name="nome" value='${profilo.nome}'>
 		  		<input type="hidden" name="cognome" value='${profilo.cognome}'>
@@ -174,12 +174,12 @@ function getComuni(){
 		  		<input type="hidden" name="numero_telefono" value='${profilo.numero_telefono}'>
 		  		<input type="hidden" name="comune" value='${profilo.comune_candidato}'>
 		  		<input type="hidden" name="mail" value= '${profilo.mail}'>
-		  		<input type="hidden" name="param" value="8">
+		  		<input type="hidden" name="param" value="8"> <br>
 		  		<input type="submit" value="Modifica Foto">
 		  		</form>
-		  		
+		  		<br><br>
 		  		<form action="Candidato_controller" method="post" enctype="multipart/form-data"> 
-		  		Seleziona il curriculum da caricare<input type="file" name="file3" id="file3" /> <br/>
+		  		Seleziona il curriculum da caricare<input type="file" name="file3" id="file3" /> 
 		  		<input type="hidden" name="id" value='${profilo.id_candidato}'>
 		  		<input type="hidden" name="nome" value='${profilo.nome}'>
 		  		<input type="hidden" name="cognome" value='${profilo.cognome}'>
@@ -188,7 +188,7 @@ function getComuni(){
 		  		<input type="hidden" name="numero_telefono" value='${profilo.numero_telefono}'>
 		  		<input type="hidden" name="comune" value='${profilo.comune_candidato}'>
 		  		<input type="hidden" name="mail" value= '${profilo.mail}'>
-		  		<input type="hidden" name="param" value="9">
+		  		<input type="hidden" name="param" value="9"> <br>
 		  		<input type="submit" value="Modifica Curriculum">
 		  		</form>
   </div>
