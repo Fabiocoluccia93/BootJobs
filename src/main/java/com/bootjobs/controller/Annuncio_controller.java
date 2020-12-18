@@ -93,7 +93,7 @@ public class Annuncio_controller extends HttpServlet {
 			
 			request.setAttribute("annunci", listaAnnuncio);
 
-			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("view/risultatiAnnuncioSocieta.jsp");
 			rd.include(request, response);
 		}
 	}
