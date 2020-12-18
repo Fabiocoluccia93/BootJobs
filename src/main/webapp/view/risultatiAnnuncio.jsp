@@ -22,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.annunci}" var="annuncio">
+			<c:forEach items="${sessionScope.annunci}" var="annuncio">
 				<tr>
 					<td scope="row" ><a style="color: red;"
 						href="view/dettagliAnnuncio.jsp?nome_annuncio=${annuncio.nome_annuncio}

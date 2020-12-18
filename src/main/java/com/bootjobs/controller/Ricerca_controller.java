@@ -36,9 +36,22 @@ public class Ricerca_controller extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+			throws ServletException, IOException
+	{
+		Annuncio_Service as = new Annuncio_Service();
+		HttpSession session = request.getSession();
+		String param = request.getParameter("param");
+		Integer intParam = Integer.parseInt(param);
+		if (intParam == 3) 
+		{
+			Annuncio singolo = null;
+			String id = request.getParameter("id");
+			Integer idInt = Integer.parseInt(id);
+			singolo = as.findById(idInt);
+			session.setAttribute("annuncio", singolo);
+			RequestDispatcher rd = request.getRequestDispatcher("/view/dettagliAnnuncioCandidato.jsp");
+			rd.include(request, response);
+		}
 	}
 
 	/**
@@ -86,7 +99,7 @@ public class Ricerca_controller extends HttpServlet {
 					System.out.println(a.getNome_annuncio());
 				}
 
-				request.setAttribute("annunci", listaAnnuncio);
+				session.setAttribute("annunci", listaAnnuncio);
 
 				RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncio.jsp");
 				rd.include(request, response);
@@ -96,24 +109,26 @@ public class Ricerca_controller extends HttpServlet {
 
 //			String idSocieta = session.getAttribute("");
 //			Integer id = Integer.parseInt(idSocieta);
-
-			int id = 2;
-			String nAnnuncio = request.getParameter("nomeAnnuncio");
-			System.out.println(nAnnuncio);
-
-			List<Annuncio> listaAnnuncio = as.findById(id);
-
-			for (int i = 0; i < listaAnnuncio.size(); i++) {
-				a = listaAnnuncio.get(i);
-				System.out.println(a.getNome_annuncio());
-			}
-
-			request.setAttribute("annunci", listaAnnuncio);
-
-			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
-			rd.include(request, response);
+//
+//			int id = 2;
+//			String nAnnuncio = request.getParameter("nomeAnnuncio");
+//			System.out.println(nAnnuncio);
+//
+//			List<Annuncio> listaAnnuncio = as.findById(id);
+//
+//			for (int i = 0; i < listaAnnuncio.size(); i++) {
+//				a = listaAnnuncio.get(i);
+//				System.out.println(a.getNome_annuncio());
+//			}
+//
+//			request.setAttribute("annunci", listaAnnuncio);
+//
+//			RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioSocieta.jsp");
+//			rd.include(request, response);
 		}
-
+		
+		
+		
 		if (b != 0) {
 
 			String nAnnuncio = request.getParameter("nomeAnnuncio");
@@ -133,7 +148,7 @@ public class Ricerca_controller extends HttpServlet {
 					System.out.println(a.getNome_annuncio());
 				}
 
-				request.setAttribute("annunci", listaAnnuncio);
+				session.setAttribute("annunci", listaAnnuncio);
 
 				RequestDispatcher rd = request.getRequestDispatcher("/view/risultatiAnnuncioCandidato.jsp");
 				rd.include(request, response);

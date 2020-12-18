@@ -91,12 +91,12 @@ public class ModificaAnnuncio_controller extends HttpServlet {
 			
 			
 			
-			List<Annuncio> listaAnnuncio = as.findById(id);
+			Annuncio listaAnnuncio = as.findById(id);
 			
-			for (int i = 0; i < listaAnnuncio.size(); i++) {
-				a = listaAnnuncio.get(i);
-			}
-			
+//			for (int i = 0; i < listaAnnuncio.size(); i++) {
+//				a = listaAnnuncio.get(i);
+//			}
+//			
 			
 			request.setAttribute("annunci", listaAnnuncio);
 

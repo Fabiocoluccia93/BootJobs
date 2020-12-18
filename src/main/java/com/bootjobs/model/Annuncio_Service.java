@@ -13,16 +13,22 @@ public class Annuncio_Service implements Annuncio_utility {
 	EntityTransaction entr = em.getTransaction();
 
 	@SuppressWarnings("unchecked")
-	public List<Annuncio> findById(int id) {
-		List<Annuncio> a = new ArrayList<Annuncio>();
-		Query q = em.createNamedQuery("searchById").setParameter("p", id);
-		
+	public Annuncio findById(int id)
+	{
 		entr.begin();
-		a= q.getResultList();
+		Annuncio a = em.find(Annuncio.class, id);
 		entr.commit();
 		em.close();
-		
 		return a;
+//		List<Annuncio> a = new ArrayList<Annuncio>();
+//		Query q = em.createNamedQuery("searchById").setParameter("p", id);
+//		
+//		entr.begin();
+//		a= q.getResultList();
+//		entr.commit();
+//		em.close();
+//		
+//		return a;
 	}
 
 	public Annuncio_Service() {

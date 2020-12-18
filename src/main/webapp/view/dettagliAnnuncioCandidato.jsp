@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<jsp:useBean id="annuncio" class="com.bootjobs.model.Annuncio" scope="session"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,9 @@
 
 </head>
 <body style="background: green;">
-<form action="../CandidaturaController" method="post">
-<input type="hidden" value="<%= request.getParameter("id") %>" name="annuncio">
-<input type="hidden" value="<%= request.getParameter("idS") %>" name="societa">
+<form action="../../BootJobs/CandidaturaController" method="post">
+<input type="hidden" value="${annuncio.id}" name="annuncio">
+<input type="hidden" value="${annuncio.id_societa_annuncio}" name="societa">
 <table border="1" class="table">
 		<thead>
 			<tr>
@@ -30,16 +31,18 @@
 		</thead>
 		<tbody>
 				<tr>
-					<td><%= request.getParameter("nome_annuncio") %></td>
-					<td><%= request.getParameter("descrizione") %></td>
-					<td><%= request.getParameter("titolo") %></td>
-					<td><%= request.getParameter("tipo") %></td>
+				
+					<td><c:out value="${annuncio.nome_annuncio}"></c:out></td>
+					<td><c:out value="${annuncio.titolo_di_studio}"></c:out></td>
+					<td><c:out value="${annuncio.tipo_contratto}"></c:out></td>
+					<td><c:out value="${annuncio.descrizione}"></c:out></td>
 					<td></td>
 					<td></td>
-					<td><%= request.getParameter("stipendio") %></td>
-					<td><%= request.getParameter("data") %></td>
-					<td><%= request.getParameter("comune") %></td>
+					<td><c:out value="${annuncio.stipendio}"></c:out></td>
+					<td><c:out value="${annuncio.data_pubblicazione}"></c:out></td>
+					<td><c:out value="${annuncio.comune}"></c:out></td>
 					<td><button type="submit" class="btn btn-dark">Candidati</button>
+					
 				</tr>
 
 		</tbody>

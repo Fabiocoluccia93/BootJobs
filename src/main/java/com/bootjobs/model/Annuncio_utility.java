@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Annuncio_utility {
 
-	public List<Annuncio> findById(int id);
+	public Annuncio findById(int id);
 	
 	public boolean inserisciAnnuncio(Annuncio a_ins);
 

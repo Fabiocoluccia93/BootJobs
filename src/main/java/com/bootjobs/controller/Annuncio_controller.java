@@ -83,12 +83,12 @@ public class Annuncio_controller extends HttpServlet {
 			
 			int id = 2;
 			
-			List<Annuncio> listaAnnuncio = as.findById(id);
-			
-			for (int i = 0; i < listaAnnuncio.size(); i++) {
-				a = listaAnnuncio.get(i);
-				System.out.println(a.getNome_annuncio());
-			}
+			Annuncio listaAnnuncio = as.findById(id);
+//			
+//			for (int i = 0; i < listaAnnuncio.size(); i++) {
+//				a = listaAnnuncio.get(i);
+//				System.out.println(a.getNome_annuncio());
+//			}
 			
 			
 			request.setAttribute("annunci", listaAnnuncio);

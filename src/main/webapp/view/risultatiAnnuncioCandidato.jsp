@@ -22,18 +22,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.annunci}" var="annuncio">
+			<c:forEach items="${sessionScope.annunci}" var="annuncio">
 				<tr>
 					<td scope="row" ><a style="color: red;"
-						href="view/dettagliAnnuncioCandidato.jsp?nome_annuncio=${annuncio.nome_annuncio}
-						&descrizione=${annuncio.descrizione}
-						&comune=${annuncio.comune}
-						&id=${annuncio.id}
-						&idS=${annuncio.id_societa_annuncio }
-						&titolo=${annuncio.titolo_di_studio}
-						&tipo=${annuncio.tipo_contratto}
-						&stipendio=${annuncio.stipendio}
-						&data=${annuncio.data_pubblicazione}">${annuncio.nome_annuncio}</a></td>
+						href="../../BootJobs/Ricerca_controller?param=3&id=${annuncio.id}">${annuncio.nome_annuncio}</a></td>
+<!-- 						&descrizione=${annuncio.descrizione} -->
+<!-- 						&comune=${annuncio.comune} -->
+<!-- 						&id=${annuncio.id} -->
+<%-- 						&idS=${annuncio.id_societa_annuncio } --%>
+<!-- 						&titolo=${annuncio.titolo_di_studio} -->
+<!-- 						&tipo=${annuncio.tipo_contratto} -->
+<!-- 						&stipendio=${annuncio.stipendio} -->
+<%-- 						&data=${annuncio.data_pubblicazione}">${annuncio.nome_annuncio}</a></td> --%>
 						
 					<td>${annuncio.descrizione}</td>
 					<td>${annuncio.tipo_contratto}</td>
