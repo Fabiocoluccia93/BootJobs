@@ -54,13 +54,14 @@ public class Candidato_service
 		  
 		  EntityManager em= Dao.newInstance().createEntityManager();
 		  em.getTransaction().begin();
-		  Query mod = em.createQuery("UPDATE Candidato  SET mail = :mail , nome = :nome , cognome = :cognome , titolo_studio = :titolo_studio , numero_telefono = :numero_telefono , comune_candidato = :comune_candidato WHERE mail LIKE :mail ")
+		  Query mod = em.createQuery("UPDATE Candidato  SET data_nascita = :data_nascita ,mail = :mail , nome = :nome , cognome = :cognome , titolo_studio = :titolo_studio , numero_telefono = :numero_telefono , comune_candidato = :comune_candidato WHERE mail LIKE :mail ")
 				  .setParameter("mail", c_mod.getMail())
 				  .setParameter("nome", c_mod.getNome())
 				  .setParameter("cognome",c_mod.getCognome())
 				  .setParameter("titolo_studio", c_mod.getTitolo_studio())
 				  .setParameter("numero_telefono", c_mod.getNumero_telefono())
 				  .setParameter("comune_candidato", c_mod.getComune_candidato())
+				  .setParameter("data_nascita", c_mod.getData_nascita())
 				  .setParameter("mail", c_mod.getMail());
 		  int modded = mod.executeUpdate();
 		 		 
