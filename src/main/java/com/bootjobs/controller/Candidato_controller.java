@@ -35,8 +35,10 @@ import javax.servlet.http.Part;
 import org.apache.catalina.Session;
 import org.w3c.dom.DOMStringList;
 
+import com.bootjobs.model.Annuncio;
 import com.bootjobs.model.Candidato;
 import com.bootjobs.model.Candidato_service;
+import com.bootjobs.model.Candidatura_service;
 import com.bootjobs.model.FileService;
 import com.bootjobs.model.Territorio;
 import com.bootjobs.model.Territorio_service;
@@ -301,7 +303,19 @@ public class Candidato_controller extends HttpServlet {
 					httpsession.setAttribute("data1", datastamp);
 					foto =  c_oklog.getFoto();
 					curriculum = c_oklog.getCurriculum();
+					Candidatura_service cs1 = new Candidatura_service();
 					
+					Integer id_candidato = (Integer) httpsession.getAttribute("id_utente");
+					ArrayList<Annuncio> a = cs1.visualizzaCandidature(id_candidato);
+					
+					if(a.isEmpty())
+					{
+					
+					}
+					else
+					{
+						request.setAttribute("Candidature1", a);
+					}
 					r=request.getRequestDispatcher("/view/Profilo.jsp");	
 					r.forward(request, response);
 				}
@@ -395,6 +409,19 @@ public class Candidato_controller extends HttpServlet {
 					message = "Modifica eseguita con successo";
 				}
 			}
+			Candidatura_service cs1 = new Candidatura_service();
+			
+			Integer id_candidato = (Integer) httpsession.getAttribute("id_utente");
+			ArrayList<Annuncio> a = cs1.visualizzaCandidature(id_candidato);
+			
+			if(a.isEmpty())
+			{
+			
+			}
+			else
+			{
+				request.setAttribute("Candidature1", a);
+			}
 			 request.setAttribute("profilo", c_mod);
 			 request.setAttribute("message", message);
 			 r=request.getRequestDispatcher("/view/Profilo.jsp");
@@ -451,6 +478,20 @@ public class Candidato_controller extends HttpServlet {
 			 {
 				 message = "Foto aggiornata con successo";
 			 }
+			 HttpSession httpsession = request.getSession();
+			 Candidatura_service cs1 = new Candidatura_service();
+				
+				Integer id_candidato = (Integer) httpsession.getAttribute("id_utente");
+				ArrayList<Annuncio> a = cs1.visualizzaCandidature(id_candidato);
+				
+				if(a.isEmpty())
+				{
+				
+				}
+				else
+				{
+					request.setAttribute("Candidature1", a);
+				}
 			 request.setAttribute("profilo", c_mod);
 			 request.setAttribute("message", message);
 			 r=request.getRequestDispatcher("/view/Profilo.jsp");
@@ -497,6 +538,20 @@ public class Candidato_controller extends HttpServlet {
 			 {
 				 message = "Curriculum aggiornato con successo";
 			 }
+			 HttpSession httpsession = request.getSession();
+			 Candidatura_service cs1 = new Candidatura_service();
+				
+				Integer id_candidato = (Integer) httpsession.getAttribute("id_utente");
+				ArrayList<Annuncio> a = cs1.visualizzaCandidature(id_candidato);
+				
+				if(a.isEmpty())
+				{
+				
+				}
+				else
+				{
+					request.setAttribute("Candidature1", a);
+				}
 			 request.setAttribute("profilo", c_mod);
 			 request.setAttribute("message", message);
 			 r=request.getRequestDispatcher("/view/Profilo.jsp");

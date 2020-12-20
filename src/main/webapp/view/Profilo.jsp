@@ -245,6 +245,27 @@ function getComuni(){
    <a href="../BootJobs">Homepage</a>
    </div>
    </div>
+   <h3 style="text-align: center;" >Annunci a cui ti sei candidato</h3>
+      <table style="width: 100%" border="1" class="table">
+  			 <tr>
+				<th scope="col">Nome Annuncio</th>
+				<th scope="col">Descrizione</th>
+				<th scope="col">Tipo_contratto</th>
+				<th scope="col">Data pubblicazione</th>
+				<th scope="col">Comune</th>
+				
+			</tr>
+   <c:forEach items="${requestScope.Candidature1}" var="Annuncio">
+  
+     <tr> 
+		<td>${Annuncio.nome_annuncio}</td> 
+		<td>${Annuncio.descrizione}</td> 
+		<td>${Annuncio.tipo_contratto}</td> 
+		<td>${Annuncio.data_pubblicazione}</td> 
+		<td>${Annuncio.comune}</td>
+	</tr> 
+    </c:forEach>
+    </table>
   </fieldset>
      <script>
 function myFunction()

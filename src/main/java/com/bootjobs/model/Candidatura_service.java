@@ -30,16 +30,27 @@ public class Candidatura_service
 		}
 		return check;
 	}
-	public List<Candidatura> visualizzaCandidature(Integer id_candidato)
+	public ArrayList<Annuncio> visualizzaCandidature(Integer id_candidato)
 	{
+		ArrayList<Annuncio> arrayannunci = new ArrayList<Annuncio>();
 		 EntityManager em= Dao.newInstance().createEntityManager();
 		 em.getTransaction().begin();
-		  TypedQuery<Candidatura> query = em.createNamedQuery("Candidatura.findall",Candidatura.class).setParameter("id_candidato_fk", id_candidato);
+		  TypedQuery<Candidatura> query = em.createNamedQuery("Candidatura.trovacandidatura",Candidatura.class).setParameter("idcandidato", id_candidato);
+		  			em.getTransaction().commit();
+		  
+		  em= Dao.newInstance().createEntityManager();
+		  em.getTransaction().begin();
 		  List<Candidatura> listaCandidature =  query.getResultList();
+		  for(Candidatura a : listaCandidature)
+		  {
+			  Integer annuncio =a.getId_annuncio_fk();
+			  Annuncio ann= em.find(Annuncio.class, annuncio);
+			  arrayannunci.add(ann);
+		  }
 		  em.getTransaction().commit();
 		  em.close();
-		  return listaCandidature;
-	}
+		  return arrayannunci;
+		}
 	   public boolean inserisciCandidatura(Candidatura ins)
 	   {
 		   boolean check = false;

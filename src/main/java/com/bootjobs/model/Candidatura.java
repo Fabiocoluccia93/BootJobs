@@ -22,7 +22,8 @@ import javax.persistence.Table;
 @NamedQueries({
 @NamedQuery(name="Candidatura.delete", query="DELETE FROM Candidatura  where id_candidatura LIKE :id_candidatura "),
 @NamedQuery(name="Candidatura.findall", query="SELECT c FROM Candidatura c where c.id_candidato_fk LIKE :id_candidato_fk "),
-@NamedQuery(name="Candidatura.checkannuncio", query="SELECT c FROM Candidatura c WHERE c.id_candidato_fk LIKE :id_candidato AND c.id_annuncio_fk LIKE:id_annuncio")
+@NamedQuery(name="Candidatura.checkannuncio", query="SELECT c FROM Candidatura c WHERE c.id_candidato_fk LIKE :id_candidato AND c.id_annuncio_fk LIKE:id_annuncio"),
+@NamedQuery(name="Candidatura.trovacandidatura",query="SELECT c FROM Candidatura c where c.id_candidato_fk=:idcandidato")
 })
 public class Candidatura
 {
