@@ -1,13 +1,14 @@
 package com.bootjobs.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Category_utility {
 
 	
-	public ArrayList<String> get_allsubcategory();
+	public List<Subcategory> get_allsubcategory(int id_category);
 	
-	public ArrayList<String> get_all_sub(String subcategory_name);
+	public List<Category> queryForCategory();
+
 
 	
 }

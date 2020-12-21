@@ -12,7 +12,7 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name = "subcategory")
 
-@NamedQuery(name = "Subcategory", query = "SELECT c FROM Subcategory c")
+@NamedQuery(name = "Subcategory", query = "SELECT c FROM Subcategory c where c.id_category = :a")
 
 public class Subcategory {
 	

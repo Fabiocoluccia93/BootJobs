@@ -12,24 +12,23 @@ import javax.persistence.EntityManager;
 public class Category_service implements Category_utility {
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<Category> queryForCategory() {
 		EntityManager em = Dao.newInstance().createEntityManager();
 		List<Category> ctg = em.createNamedQuery("Category").getResultList();
 		return ctg;	
 
 }
-
-	public ArrayList<String> get_allsubcategory() {
-		// TODO Auto-generated method stub
-		return null;
+//	ora devi fare la query 
+	@SuppressWarnings("unchecked")
+	public List<Subcategory> get_allsubcategory(int id_category) {
+		EntityManager em = Dao.newInstance().createEntityManager();
+		List<Subcategory> ctg = em.createNamedQuery("Subcategory").
+		setParameter("a", id_category )
+		.getResultList();
+		return ctg;	
 	}
 
-
-	public ArrayList<String> get_all_sub(String subcategory_name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }
 
