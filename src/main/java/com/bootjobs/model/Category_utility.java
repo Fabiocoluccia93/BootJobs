@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public interface Category_utility {
 
-	public ArrayList<String> get_all_category();
+	
+	public ArrayList<String> get_allsubcategory();
+	
+	public ArrayList<String> get_all_sub(String subcategory_name);
 
-	public ArrayList<String> get_all(String category_name);
 	
 }

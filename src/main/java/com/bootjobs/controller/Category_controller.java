@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bootjobs.model.Category;
 import com.bootjobs.model.Category_service;
+import com.bootjobs.model.Subcategory;
 
 /**
  * Servlet implementation class Category_controller
@@ -51,20 +52,29 @@ response.getWriter().append("Served at: ").append(request.getContextPath());
         RequestDispatcher rs = request.getRequestDispatcher("/view/category.jsp");
         rs.include(request, response);
         
+       
+       String ct = request.getParameter("category");         
+       
+       PrintWriter out = response.getWriter();
+		Subcategory s = new Subcategory();
+		Category_service cts = new Category_service();
+		String subcategory = request.getParameter("subcategory");
+		
+		
+		List<String> subCat = cts.get_allsubcategory();
+		s = subCat.get(0);
+		int id_subcategory = s.getId();
+		
+		List<Subcategory> lsct = cts.get_all_sub(subcategory_name);
+		out.println("<option> Subcategory </option>");
+		for(int i = 0; i<lsct.size();i++) {
+			out.println("<option>" + lsct.get(i).getsubcategory_name() + "</option>");
+		}
+		
+	
+        
+        
 
-//        // get session scoped attribute
-//        HttpSession session = request.getSession();
-//        String sessionScope = (String)session.getAttribute("category_name");
-//
-//        // get request scoped attribute
-//        String requestScope = (String)request.getAttribute("category_name");
-//
-//        // print response
-//        response.setContentType("category/jsp");
-//        PrintWriter out = response.getWriter();
-//       
-//        out.write("<p>sessionScope: " + sessionScope + "</p>");
-//        out.write("<p>requestScope: " + requestScope + "</p>");
     }
 
 	/**
